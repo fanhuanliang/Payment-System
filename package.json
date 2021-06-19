@@ -12,11 +12,18 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^5.3.1",
     "nodemon": "^2.0.7",
-    "webpack": "^5.39.1"
+    "webpack": "^5.39.1",
+    "webpack-cli": "^4.7.2"
   },
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
