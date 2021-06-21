@@ -28,30 +28,42 @@ const userInfoSchema = new mongoose.Schema({
 const User = mongoose.model("UserInfo", userInfoSchema);
 
 const loginUser = (data, callback) => {
-  console.log('connect to database', data)
-  // User.findOne({ email: "fan@gmail.com", phoneNumber:'4088632546'});
-  // Customer.find({ email: "fan@gmail.com", phoneNumber:'4088632546'});
-}
-
-
-const registerUser = (data, callback) => {
-  let filterObj = {email: data.email, phoneNumber: data.phoneNumber}
-  User.find(filterObj, (err, arr) => {
-    if (arr.length === 0) {
-      const user = new User(data)
-      user.save((err, result) => {
-        if (err) {
-          callback(err);
-        } else {
-          // console.log(result)
-          callback(result)
-        }
-      })
+  console.log("connect to database", data);
+  User.find({email: data.email}, (err, result) => {
+    if (err) {
+      callback(err)
     } else {
-      callback("User exists already", null);
+      if (result.length === 0) {
+        callback("Some of your info isn't correct. Please try again.");
+      } else {
+        callback(null, result)
+      }
     }
   });
-}
+};
+
+const registerUser = (data, callback) => {
+  let filterObj = { email: data.email, phoneNumber: data.phoneNumber };
+  User.find(filterObj, (err, arr) => {
+    if (err) {
+      callback(err);
+    } else {
+      if (arr.length === 0) {
+        const user = new User(data);
+        user.save((err, result) => {
+          if (err) {
+            callback(err);
+          } else {
+            // console.log(result)
+            callback(null, result);
+          }
+        });
+      } else {
+        callback("User exists already");
+      }
+    }
+  });
+};
 module.exports = {
   loginUser,
   registerUser,
