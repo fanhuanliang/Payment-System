@@ -17,7 +17,6 @@ app.use(
 );
 
 app.post("/api/login", async (req, res) => {
-  console.log("env", process.env.DB_HOST);
   try {
     db.loginUser(req.body, async (err, result) => {
       if (err) {
@@ -29,7 +28,6 @@ app.post("/api/login", async (req, res) => {
             { result },
             process.env.ACCESS_TOKEN_SECRET,
             (err, token) => {
-              console.log(console.log(process.env.ACCESS_TOKEN_SECRET));
               res.status(200).json({ token });
               // res.status(200).send(result);
             }
@@ -51,7 +49,7 @@ app.post("/api/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = req.body;
     user.password = hashedPassword;
-
+    console.log('user', user)
     db.registerUser(user, (err, result) => {
       if (err) {
         res.status(404).send(err);
@@ -88,7 +86,6 @@ function verifyToken(req, res, next) {
     const bearerToken = bearerHeader.split(" ")[1];
     // console.log(bearerToken);
     jwt.verify(bearerToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-      console.log(process.env.ACCESS_TOKEN_SECRET);
       if (err) {
         return res.sendStatus(403);
       }
