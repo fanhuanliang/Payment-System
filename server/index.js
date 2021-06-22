@@ -1,8 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const app = express();
 const bcrypt = require("bcrypt");
-const jst = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const port = process.env.port || 3000; //whatever is in the environment variable PORT, or 3000 if there's nothing there.
 const db = require("../database/index.js");
 const bodyParser = require("body-parser");
@@ -16,21 +17,32 @@ app.use(
 );
 
 app.post("/api/login", async (req, res) => {
-  // console.log(req.body);
+  console.log("env", process.env.DB_HOST);
   try {
     db.loginUser(req.body, async (err, result) => {
       if (err) {
         res.status(404).send(err);
       } else {
         if (await bcrypt.compare(req.body.password, result[0].password)) {
-          res.status(200).send(result);
+          result = result[0];
+          jwt.sign(
+            { result },
+            process.env.ACCESS_TOKEN_SECRET,
+            (err, token) => {
+              console.log(console.log(process.env.ACCESS_TOKEN_SECRET));
+              res.status(200).json({ token });
+              // res.status(200).send(result);
+            }
+          );
         } else {
-          res.status(200).send("Some of your info isn't correct. Please try again.");
+          res
+            .status(200)
+            .send("Some of your info isn't correct. Please try again.");
         }
       }
     });
-  } catch{
-    res.status(500).send()
+  } catch {
+    res.status(500).send();
   }
 });
 
@@ -61,6 +73,34 @@ app.post("/api/register", async (req, res) => {
   //   }
   // });
 });
+
+app.get("/api/findUser", verifyToken, (req, res) => {
+  res.json(req.user);
+});
+
+// Verify Token
+function verifyToken(req, res, next) {
+  //Get auth header value
+  const bearerHeader = req.headers["authorization"];
+  //check if bearer is undefined
+  if (typeof bearerHeader !== "undefined") {
+    //Authorization: Bearer <access_token>
+    const bearerToken = bearerHeader.split(" ")[1];
+    // console.log(bearerToken);
+    jwt.verify(bearerToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+      console.log(process.env.ACCESS_TOKEN_SECRET);
+      if (err) {
+        return res.sendStatus(403);
+      }
+      req.user = user;
+      next();
+    });
+    //next middleware
+  } else {
+    //Forbidden
+    res.sendStatus(401);
+  }
+}
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
