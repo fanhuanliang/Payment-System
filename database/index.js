@@ -12,23 +12,18 @@ db.once("open", function () {
 });
 
 const userInfoSchema = new mongoose.Schema({
-  userName: String,
+  userName: { type: String, unique: true },
   email: { type: String, unique: true }, // unique key  db.collection.createIndex( { email: 1 }, { unique: true } )
   phoneNumber: { type: String, unique: true }, // unique key
   password: String,
   balance: String,
-  friends: [
-    {
-      userName: String,
-      email: String,
-      _id: false,
-    },
-  ],
+  friends: Object,
 });
+
 const User = mongoose.model("UserInfo", userInfoSchema);
 
 const loginUser = (data, callback) => {
-  console.log("connect to database", data);
+  // console.log("connect to database", data);
   User.find({email: data.email}, (err, result) => {
     if (err) {
       callback(err)
@@ -43,6 +38,7 @@ const loginUser = (data, callback) => {
 };
 
 const registerUser = (data, callback) => {
+  console.log(data)
   let filterObj = { email: data.email, phoneNumber: data.phoneNumber };
   User.find(filterObj, (err, arr) => {
     if (err) {
