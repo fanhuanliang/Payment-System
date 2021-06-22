@@ -24,12 +24,17 @@ app.post("/api/login", async (req, res) => {
       } else {
         if (await bcrypt.compare(req.body.password, result[0].password)) {
           result = result[0];
+          //jwt.sign(payload, secretOrPrivateKey, [options, callback])
           jwt.sign(
             { result },
             process.env.ACCESS_TOKEN_SECRET,
             (err, token) => {
-              res.status(200).json({ token });
-              // res.status(200).send(result);
+              if (err) {
+                res.sendStatus(403)
+              } else {
+                res.status(200).json({ token });
+                // res.status(200).send(result);
+              }
             }
           );
         } else {
