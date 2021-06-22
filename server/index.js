@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const bcrypt = require("bcrypt");
+const jst = require("jsonwebtoken");
 const port = process.env.port || 3000; //whatever is in the environment variable PORT, or 3000 if there's nothing there.
 const db = require("../database/index.js");
 const bodyParser = require("body-parser");
