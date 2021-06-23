@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const port = process.env.port || 3000; //whatever is in the environment variable PORT, or 3000 if there's nothing there.
 const db = require("../database/index.js");
 const bodyParser = require("body-parser");
+// const cors = 
 
 app.use(express.static(path.join(__dirname, "..", "public")));
 
@@ -22,21 +23,18 @@ app.post("/api/login", async (req, res) => {
       if (err) {
         res.status(404).send(err);
       } else {
-        if (await bcrypt.compare(req.body.password, result[0].password)) {
-          result = result[0];
+        if (await bcrypt.compare(req.body.password, result.password)) {
           //jwt.sign(payload, secretOrPrivateKey, [options, callback])
-          jwt.sign(
-            { result },
-            process.env.ACCESS_TOKEN_SECRET,
-            (err, token) => {
-              if (err) {
-                res.sendStatus(403)
-              } else {
-                res.status(200).json({ token });
-                // res.status(200).send(result);
-              }
+          console.log(result)
+          let user = result.userName
+          jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
+            if (err) {
+              res.sendStatus(403);
+            } else {
+              res.status(200).json({ token });
+              // res.status(200).send(result);
             }
-          );
+          });
         } else {
           res
             .status(200)
