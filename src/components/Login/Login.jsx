@@ -1,10 +1,13 @@
 import React from 'react'
+import * as style from './Login.style.jsx'
+// import {Wrapper} from './Login.style.jsx'
 
 export default function Login() {
   return (
-    <div>
+    <style.Wrapper>
+      <style.container>
       <form>
-        <h1>Power Pay</h1>
+        <h1>Mimic Pay</h1>
         <div>!!!Some of your info isn't correct. Please try again.</div>
         <input type="text" placeholder="Email or user name or mobile number" />
         <input type="password" placeholder="Password" />
@@ -18,6 +21,7 @@ export default function Login() {
           Sign Up
         </button>
       </div>
-    </div>
+        </style.container>
+    </style.Wrapper>
   )
 }

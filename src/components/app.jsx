@@ -3,13 +3,15 @@ import Login from './Login/Login.jsx';
 import Header from './Header/Header.jsx';
 import Content from './Content/Content.jsx';
 import Footer from './Footer/Footer.jsx'
+import { GlobalStyle } from '../index.style.jsx'
 
 const App = () => {
   return (
   <div>
-    <Header />
+    <GlobalStyle />
+    {/* <Header />
     <Content />
-    <Footer />
+    <Footer /> */}
     <Login />
   </div>
   )
