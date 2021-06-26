@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 
 const color = {
   light_blue: 'rgb(163, 205, 217)',
-  dark_blue: 'rgb(80, 106, 212)',
+  dark_blue: 'rgb(0,108,182)',
   border_gray: 'rgb(203, 207, 209)',
 }
 
