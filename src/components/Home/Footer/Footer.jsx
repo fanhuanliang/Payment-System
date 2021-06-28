@@ -5,7 +5,7 @@ export default function Footer() {
     <footer>
       <div>
         <div>
-          <p>© 2020 PowerPay</p>
+          <p>© 2021 Mimic Pay</p>
           <ul>
             <li>Ins</li>
             <li>Twitter</li>

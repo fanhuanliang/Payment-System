@@ -9,7 +9,7 @@ export const Header = styled.header`
 export const Wrapper = styled.div`
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
     background-color: rgb(224, 230, 239);
 `
 
