@@ -9,8 +9,8 @@ export default function Footer() {
           <p>© 2021 Mimic Pay</p>
           <style.UnOrderList>
             <style.List><style.Button>Instagram</style.Button></style.List>
-            <style.List><style.Button>Twitter</style.Button></style.List>
             <style.List><style.Button>Facebook</style.Button></style.List>
+            <style.List><style.Button>Twitter</style.Button></style.List>
           </style.UnOrderList>
         </style.Container>
       </style.Wrapper>
