@@ -53,36 +53,58 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/components/Content/Content.jsx":
-/*!********************************************!*\
-  !*** ./src/components/Content/Content.jsx ***!
-  \********************************************/
+/***/ "./src/components/Home/Content/Content.jsx":
+/*!*************************************************!*\
+  !*** ./src/components/Home/Content/Content.jsx ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Content)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nfunction Content() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"section\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"h1\", null, \"Online banking\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"left side pics\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"right side \"))));\n}\n\n//# sourceURL=webpack://payment-system/./src/components/Content/Content.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Content)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _Content_style_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Content.style.jsx */ \"./src/components/Home/Content/Content.style.jsx\");\n/* harmony import */ var _source_money_jpeg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../source/money.jpeg */ \"./source/money.jpeg\");\n\n\n //local import jpeg file by installing file-loader in webpack.\n\nfunction Content() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Content_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Content_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Content_style_jsx__WEBPACK_IMPORTED_MODULE_1__.LeftSide, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"h1\", null, \"Online payments\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Content_style_jsx__WEBPACK_IMPORTED_MODULE_1__.UnOrderList, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Mimic the transfer feature of venmo\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Money only can be transferred between friends\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Maximum $1000 in one transaction\"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"img\", {\n    src: _source_money_jpeg__WEBPACK_IMPORTED_MODULE_2__.default,\n    alt: \"Money transfer\"\n  }))));\n}\n\n//# sourceURL=webpack://payment-system/./src/components/Home/Content/Content.jsx?");
 
 /***/ }),
 
-/***/ "./src/components/Footer/Footer.jsx":
-/*!******************************************!*\
-  !*** ./src/components/Footer/Footer.jsx ***!
-  \******************************************/
+/***/ "./src/components/Home/Content/Content.style.jsx":
+/*!*******************************************************!*\
+  !*** ./src/components/Home/Content/Content.style.jsx ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Footer)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nfunction Footer() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"footer\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"p\", null, \"\\xA9 2020 PowerPay\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"ul\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Ins\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Twitter\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Facebook\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"flag\"))));\n}\n\n//# sourceURL=webpack://payment-system/./src/components/Footer/Footer.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Wrapper\": () => (/* binding */ Wrapper),\n/* harmony export */   \"Container\": () => (/* binding */ Container),\n/* harmony export */   \"LeftSide\": () => (/* binding */ LeftSide),\n/* harmony export */   \"UnOrderList\": () => (/* binding */ UnOrderList)\n/* harmony export */ });\n/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ \"./node_modules/styled-components/dist/styled-components.browser.esm.js\");\nvar _templateObject, _templateObject2, _templateObject3, _templateObject4;\n\nfunction _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }\n\n\nvar Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n  background-color: rgb(152,230,240);\\n\"])));\nvar Container = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral([\"\\n  display:flex;\\n  justify-content: space-evenly;\\n  > h1, li {\\n    padding: 20px;\\n    margin: 20px;\\n    color: #557e94;\\n  }\\n  @media only screen and (max-width: 900px) {\\n    justify-content: center;\\n    flex-direction: column;\\n    };\\n\"])));\nvar LeftSide = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral([\"\\n  font-size: 2em;\\n  margin:auto;\\n\"])));\nvar UnOrderList = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.ul(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral([\"\\n  list-style-type: none;\\n\"])));\n\n//# sourceURL=webpack://payment-system/./src/components/Home/Content/Content.style.jsx?");
 
 /***/ }),
 
-/***/ "./src/components/Header/Header.jsx":
-/*!******************************************!*\
-  !*** ./src/components/Header/Header.jsx ***!
-  \******************************************/
+/***/ "./src/components/Home/Footer/Footer.jsx":
+/*!***********************************************!*\
+  !*** ./src/components/Home/Footer/Footer.jsx ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Header)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nfunction Header() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"header\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"a\", null, \"Mimic Pay Logo\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"a\", null, \"Log In\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"a\", null, \"Sign Up\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"a\", null, \"Log Out\"))));\n}\n\n//# sourceURL=webpack://payment-system/./src/components/Header/Header.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Footer)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nfunction Footer() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"footer\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"p\", null, \"\\xA9 2021 Mimic Pay\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"ul\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Ins\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Twitter\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"li\", null, \"Facebook\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, \"flag\"))));\n}\n\n//# sourceURL=webpack://payment-system/./src/components/Home/Footer/Footer.jsx?");
+
+/***/ }),
+
+/***/ "./src/components/Home/Header/Header.jsx":
+/*!***********************************************!*\
+  !*** ./src/components/Home/Header/Header.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Header)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _Header_style_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.style.jsx */ \"./src/components/Home/Header/Header.style.jsx\");\n\n\nfunction Header() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"a\", null, \"Mimic Pay Logo\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_style_jsx__WEBPACK_IMPORTED_MODULE_1__.rightSide, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Button, null, \"Log In\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Button, null, \"Sign Up\")))));\n}\n\n//# sourceURL=webpack://payment-system/./src/components/Home/Header/Header.jsx?");
+
+/***/ }),
+
+/***/ "./src/components/Home/Header/Header.style.jsx":
+/*!*****************************************************!*\
+  !*** ./src/components/Home/Header/Header.style.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Header\": () => (/* binding */ Header),\n/* harmony export */   \"Wrapper\": () => (/* binding */ Wrapper),\n/* harmony export */   \"Container\": () => (/* binding */ Container),\n/* harmony export */   \"rightSide\": () => (/* binding */ rightSide),\n/* harmony export */   \"Button\": () => (/* binding */ Button)\n/* harmony export */ });\n/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ \"./node_modules/styled-components/dist/styled-components.browser.esm.js\");\nvar _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;\n\nfunction _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }\n\n\nvar Header = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.header(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n    position: sticky;\\n    top: 0;\\n\\n\"])));\nvar Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral([\"\\n    display: flex;\\n    justify-content: center;\\n    // margin-bottom: 20px;\\n    background-color: rgb(224, 230, 239);\\n\"])));\nvar Container = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral([\"\\n    width: 90%;\\n    display: flex;\\n    justify-content: space-between;\\n    font-size: 3em;\\n    font-family: Comic Sans, Comic Sans MS, cursive;\\n    padding: 20px;\\n\"])));\nvar rightSide = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral([\"\\n    display: flex;\\n    justify-content: space-around;\\n    width: 20%;\\n    font-size: 0.8em;\\n    > * {\\n      &:first-child {\\n      background-color:#44c767;\\n      border:1px solid #18ab29;\\n      text-shadow:0px 1px 0px #2f6627;\\n      :hover {\\n\\t      background-color:#5cbf2a;\\n}\\n    }\\n\\n    @media only screen and (max-width: 770px) {\\n      width: 30%; \\n    };\\n\"])));\nvar Button = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.button(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral([\"\\n\\tbackground-color:#007dc1;\\n\\tborder-radius:28px;\\n\\tborder:1px solid #124d77;\\n\\tdisplay:inline-block;\\n\\tcursor:pointer;\\n\\tcolor:#ffffff;\\n\\tfont-family:Arial;\\n\\tfont-size:14px;\\n\\tpadding:8px 15px;\\n\\ttext-decoration:none;\\n\\ttext-shadow:0px 1px 0px #154682;\\n  min-width: 84px;\\n}\\n:hover {\\n\\tbackground-color:#0061a7;\\n}\\n:active {\\n\\tposition:relative;\\n\\ttop:1px;\\n\"])));\n\n//# sourceURL=webpack://payment-system/./src/components/Home/Header/Header.style.jsx?");
 
 /***/ }),
 
@@ -108,6 +130,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/components/Register/Register.jsx":
+/*!**********************************************!*\
+  !*** ./src/components/Register/Register.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Register)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _Register_style_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Register.style.jsx */ \"./src/components/Register/Register.style.jsx\");\n\n\nfunction Register() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Register_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Layer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Register_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Register_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"h1\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"a\", null, \"Sign up for Mimic Pay\"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Register_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Form, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", {\n    type: \"text\",\n    placeholder: \"Username\"\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", {\n    type: \"email\",\n    placeholder: \"Email\"\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", {\n    type: \"text\",\n    placeholder: \"Phone number\"\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", {\n    type: \"password\",\n    placeholder: \"Password\"\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", {\n    type: \"password\",\n    placeholder: \"Confirm\"\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Register_style_jsx__WEBPACK_IMPORTED_MODULE_1__.Button, null, \"Register\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Register_style_jsx__WEBPACK_IMPORTED_MODULE_1__.LogInButton, null, \"Log In Instead\"))));\n}\n\n//# sourceURL=webpack://payment-system/./src/components/Register/Register.jsx?");
+
+/***/ }),
+
+/***/ "./src/components/Register/Register.style.jsx":
+/*!****************************************************!*\
+  !*** ./src/components/Register/Register.style.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Layer\": () => (/* binding */ Layer),\n/* harmony export */   \"Container\": () => (/* binding */ Container),\n/* harmony export */   \"Header\": () => (/* binding */ Header),\n/* harmony export */   \"Form\": () => (/* binding */ Form),\n/* harmony export */   \"Button\": () => (/* binding */ Button),\n/* harmony export */   \"LogInButton\": () => (/* binding */ LogInButton)\n/* harmony export */ });\n/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ \"./node_modules/styled-components/dist/styled-components.browser.esm.js\");\n/* harmony import */ var _index_style_jsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../index.style.jsx */ \"./src/index.style.jsx\");\nvar _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6;\n\nfunction _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }\n\n\n\nvar Layer = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n    display: flex;\\n    justify-content: center;\\n    min-height: 100vh;\\n\"])));\nvar Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral([\"\\n    display: flex;\\n    flex-direction: column;\\n    font-size: 1.5em;\\n    align-items: center;\\n    margin: auto;\\n    width: 50vw;\\n    border: 1px solid \", \";\\n    border-radius: 10px;\\n\"])), _index_style_jsx__WEBPACK_IMPORTED_MODULE_0__.color.border_gray);\nvar Header = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral([\"\\n    font-family: emoji;\\n    font-size: 1.2em;\\n    padding: 10px;\\n    margin: 10px; \\n\"])));\nvar Form = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral([\"\\n    display: flex;\\n    flex-direction: column;\\n    width: 100%;\\n    padding: 20px;\\n    & > * {\\n      padding: 10px;\\n      margin: 10px;\\n      font-size: 20px;\\n      border: 1px solid \", \";\\n      border-radius: 5px;\\n    }\\n\"])), _index_style_jsx__WEBPACK_IMPORTED_MODULE_0__.color.border_gray);\nvar Button = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.button(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral([\"\\n\\tbackground-color:\", \";\\n\\tborder-radius:5px;\\n\\tborder:1px solid #4e6096;\\n\\tdisplay:inline-block;\\n\\tcursor:pointer;\\n\\tcolor:#ffffff;\\n\\tfont-family:Arial;\\n\\tfont-size:20px;\\n\\tfont-weight:bold;\\n\\ttext-decoration:none;\\n\\ttext-shadow:0px -1px 0px \", \";\\n\"])), _index_style_jsx__WEBPACK_IMPORTED_MODULE_0__.color.dark_blue, _index_style_jsx__WEBPACK_IMPORTED_MODULE_0__.color.border_gray);\nvar LogInButton = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.button(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral([\"\\n\\tbox-shadow:inset 0px 1px 3px 0px #d9fbbe;\\n\\tbackground:linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);\\n\\tbackground-color:#b8e356;\\n\\tborder-radius:5px;\\n\\tborder:1px solid #83c41a;\\n\\tdisplay:inline-block;\\n\\tcursor:pointer;\\n\\tcolor:#ffffff;\\n\\tfont-family:Arial;\\n\\tfont-size:20px;\\n\\tfont-weight:bold;\\n\\tpadding:11px 23px;\\n\\ttext-decoration:none;\\n\\ttext-shadow:0px -1px 0px #86ae47;\\n  :hover {\\n\\tbackground:linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);\\n\\tbackground-color:#a5cc52;\\n  }\\n  :active {\\n\\tposition:relative;\\n\\ttop:1px;\\n}\\n\"])));\n\n//# sourceURL=webpack://payment-system/./src/components/Register/Register.style.jsx?");
+
+/***/ }),
+
 /***/ "./src/components/app.jsx":
 /*!********************************!*\
   !*** ./src/components/app.jsx ***!
@@ -115,7 +159,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _Login_Login_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login/Login.jsx */ \"./src/components/Login/Login.jsx\");\n/* harmony import */ var _Header_Header_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header/Header.jsx */ \"./src/components/Header/Header.jsx\");\n/* harmony import */ var _Content_Content_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Content/Content.jsx */ \"./src/components/Content/Content.jsx\");\n/* harmony import */ var _Footer_Footer_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Footer/Footer.jsx */ \"./src/components/Footer/Footer.jsx\");\n/* harmony import */ var _index_style_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../index.style.jsx */ \"./src/index.style.jsx\");\n\n\n\n\n\n\n\nvar App = function App() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_style_jsx__WEBPACK_IMPORTED_MODULE_5__.GlobalStyle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Login_Login_jsx__WEBPACK_IMPORTED_MODULE_1__.default, null));\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://payment-system/./src/components/app.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _Login_Login_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login/Login.jsx */ \"./src/components/Login/Login.jsx\");\n/* harmony import */ var _Home_Header_Header_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Home/Header/Header.jsx */ \"./src/components/Home/Header/Header.jsx\");\n/* harmony import */ var _Home_Content_Content_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Home/Content/Content.jsx */ \"./src/components/Home/Content/Content.jsx\");\n/* harmony import */ var _Home_Footer_Footer_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Home/Footer/Footer.jsx */ \"./src/components/Home/Footer/Footer.jsx\");\n/* harmony import */ var _Register_Register_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Register/Register.jsx */ \"./src/components/Register/Register.jsx\");\n/* harmony import */ var _index_style_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../index.style.jsx */ \"./src/index.style.jsx\");\n\n\n\n\n\n\n\n\nvar App = function App() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_style_jsx__WEBPACK_IMPORTED_MODULE_6__.GlobalStyle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Home_Header_Header_jsx__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Home_Content_Content_jsx__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Home_Footer_Footer_jsx__WEBPACK_IMPORTED_MODULE_4__.default, null));\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://payment-system/./src/components/app.jsx?");
 
 /***/ }),
 
@@ -138,6 +182,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"color\": () => (/* binding */ color),\n/* harmony export */   \"GlobalStyle\": () => (/* binding */ GlobalStyle)\n/* harmony export */ });\n/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ \"./node_modules/styled-components/dist/styled-components.browser.esm.js\");\nvar _templateObject;\n\nfunction _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }\n\n\n\nvar color = {\n  light_blue: 'rgb(163, 205, 217)',\n  dark_blue: 'rgb(0,108,182)',\n  border_gray: 'rgb(203, 207, 209)'\n};\nvar GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral([\"\\n  *,\\n  *::before,\\n  *::after {\\n    margin: 0;\\n    padding: 0;\\n    box-sizing: border-box;\\n  }\\n  body{\\n    font-size: 62.25%;\\n    font-family: sans-serif;\\n  }\\n\"])));\n\n\n//# sourceURL=webpack://payment-system/./src/index.style.jsx?");
+
+/***/ }),
+
+/***/ "./source/money.jpeg":
+/*!***************************!*\
+  !*** ./source/money.jpeg ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + \"f225d973112fe0302aed6c2df11a496c.jpeg\");\n\n//# sourceURL=webpack://payment-system/./source/money.jpeg?");
 
 /***/ }),
 
@@ -345,6 +400,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -359,6 +426,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
