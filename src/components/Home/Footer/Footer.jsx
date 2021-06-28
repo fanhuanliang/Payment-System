@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
+import * as style from './Footer.style.jsx';
 
 export default function Footer() {
   return (
     <footer>
-      <div>
-        <div>
+      <style.Wrapper>
+        <style.Container>
           <p>© 2021 Mimic Pay</p>
-          <ul>
-            <li>Ins</li>
-            <li>Twitter</li>
-            <li>Facebook</li>
-          </ul>
-          <div>flag</div>
-        </div>
-      </div>
+          <style.UnOrderList>
+            <style.List><style.Button>Instagram</style.Button></style.List>
+            <style.List><style.Button>Twitter</style.Button></style.List>
+            <style.List><style.Button>Facebook</style.Button></style.List>
+          </style.UnOrderList>
+        </style.Container>
+      </style.Wrapper>
     </footer>
   )
 }
