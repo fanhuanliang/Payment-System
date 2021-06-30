@@ -4,6 +4,7 @@ import Header from './Home/Header/Header.jsx';
 import Content from './Home/Content/Content.jsx';
 import Footer from './Home/Footer/Footer.jsx';
 import Register from './Register/Register.jsx';
+import Main from './Main/Main.jsx';
 import { GlobalStyle } from '../index.style.jsx';
 
 const App = () => {
@@ -13,8 +14,9 @@ const App = () => {
     <Header />
     <Content />
     <Footer />
-    {/* <Login />
-    <Register/> */}
+    {/* <Login /> */}
+    <Register/>
+    <Main/>
   </div>
   )
 }
