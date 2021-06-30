@@ -8,13 +8,17 @@ export default function Popup({ open, onClose }) {
     <>
       <style.BottomLayer>
         <style.PopupModal>
-      <button onClick={onClose}>Close Modal</button>
-      <input placeholder='$0'></input>
-      <div>Transfer to </div>
-      <div>Add Recipients</div>
-      <input placeholder='Username, phone, or email'></input>
-      <User/>
-      </style.PopupModal>
+            <button onClick={onClose}>X</button>
+          <form>
+            <input placeholder='$0'></input>
+          <div>Transfer to </div>
+          <button>Confirm</button>
+          </form>
+          <div>Add Recipients</div>
+          <input placeholder='Username, phone, or email'></input>
+          <button>Search</button>
+          <User />
+        </style.PopupModal>
       </style.BottomLayer>
     </>
   )
