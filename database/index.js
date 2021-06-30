@@ -16,8 +16,7 @@ const userInfoSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true, min: 6, max: 255 }, // unique key  db.collection.createIndex( { email: 1 }, { unique: true } )
   phoneNumber: { type: String, unique: true, required: true, min: 6, max: 255 }, // unique key
   password: { type: String, required: true, min: 6, max: 1024 },
-  balance: String,
-  friends: Object,
+  balance: Number,
 });
 
 const User = mongoose.model("UserInfo", userInfoSchema);
