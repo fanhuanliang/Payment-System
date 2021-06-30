@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Users extends Component {
-  render() {
-    return (
-      <div>
-        mapusers
-      </div>
-    )
-  }
+export default function Users() {
+  if (true) return null
+  return (
+    <div>
+      
+    </div>
+  )
 }
+

@@ -8,7 +8,9 @@ export default function Popup({ open, onClose }) {
     <>
       <style.BottomLayer>
         <style.PopupModal>
+          <div>
             <button onClick={onClose}>X</button>
+          </div>
           <form>
             <input placeholder='$0'></input>
           <div>Transfer to </div>

@@ -18,4 +18,9 @@ export const PopupModal = styled.div`
   background-color: rgb(255, 252, 230);
   padding: 50px;
   zIndex: 100;
+  width: 50vw;
+  height: 80vh;
+  border: 1px solid grey;
+  border-radius: 10px;
+  box-shadow: 10px 10px black;
 `
