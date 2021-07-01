@@ -1,5 +1,5 @@
 import React from 'react'
-import User from './Users/Users.jsx'
+import Users from './Users/Users.jsx'
 import * as style from './Popup.style.jsx'
 
 export default function Popup({ open, onClose }) {
@@ -9,17 +9,14 @@ export default function Popup({ open, onClose }) {
       <style.BottomLayer>
         <style.PopupModal>
           <div>
-            <button onClick={onClose}>X</button>
+            <style.Button onClick={onClose}>X</style.Button>
           </div>
-          <form>
-            <input placeholder='$0'></input>
-          <div>Transfer to </div>
-          <button>Confirm</button>
-          </form>
-          <div>Add Recipients</div>
-          <input placeholder='Username, phone, or email'></input>
-          <button>Search</button>
-          <User />
+          <style.Form>
+            <style.Input placeholder='$0.00'></style.Input>
+            <span>Transfer to <span></span></span>
+            <style.ConfirmButton>Confirm</style.ConfirmButton>
+          </style.Form>
+          <Users />
         </style.PopupModal>
       </style.BottomLayer>
     </>

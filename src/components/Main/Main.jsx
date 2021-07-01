@@ -2,8 +2,12 @@ import React, {useState} from 'react'
 import Header from '../Home/Header/Header.jsx'
 import * as style from './Main.style.jsx'
 import Popup from './Popup/Popup.jsx'
+import store from '../../redux/store/index'
 
 export default function Main() {
+  console.log(store)
+  console.log(store.getState().defaultState[0])
+  const userOne = store.getState().defaultState[0]
   const logOut = true
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -11,8 +15,8 @@ export default function Main() {
       <Header logOut={logOut}/>
       <style.Container>
         <style.Box>
-          <style.Title>Welcome, User</style.Title>
-          <style.Heading>$0.00</style.Heading>
+          <style.Title>Welcome, User {userOne.userName}</style.Title>
+          <style.Heading>${userOne.balance.toFixed(2)}</style.Heading>
           <style.Paragraph>Balance available</style.Paragraph>
           <style.Button onClick={() => setIsOpen(true)} >Transfer Money</style.Button>
         </style.Box>
