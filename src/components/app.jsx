@@ -6,18 +6,31 @@ import Footer from './Home/Footer/Footer.jsx';
 import Register from './Register/Register.jsx';
 import Main from './Main/Main.jsx';
 import { GlobalStyle } from '../index.style.jsx';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const App = () => {
   return (
-  <div>
-    <GlobalStyle />
-    {/* <Header />
-    <Content />
-    <Footer /> */}
-    {/* <Login /> */}
-    {/* <Register/> */}
-    <Main/>
-  </div>
+    <Router>
+      <>
+      <GlobalStyle />
+        <Switch>
+          <Route exact path='/'>
+        <Header />
+            <Content />
+            <Footer />
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path='/register'>
+            <Register />
+          </Route>
+          <Route path='/main'>
+            <Main />
+          </Route>
+        </Switch>
+      </>
+    </Router>
   )
 }
 
