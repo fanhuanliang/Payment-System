@@ -27,6 +27,7 @@ export const PopupModal = styled.div`
   line-height: 30px;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
 `
 
 export const Button = styled.button`
