@@ -4,12 +4,13 @@ const path = require("path");
 const app = express();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const port = process.env.port || 3000; //whatever is in the environment variable PORT, or 3000 if there's nothing there.
+const port = process.env.port || 5000; //whatever is in the environment variable PORT, or 3000 if there's nothing there.
 const db = require("../database/index.js");
 const bodyParser = require("body-parser");
 // const cors = 
 
 app.use(express.static(path.join(__dirname, "..", "public")));
+
 
 app.use(
   express.urlencoded({
@@ -101,7 +102,11 @@ function verifyToken(req, res, next) {
     res.sendStatus(401);
   }
 }
-
+// wildcard handles any requests that don't match the ones ABOVE
+    app.get("*", (req, res) => {
+      console.log('here', res)
+      res.sendFile(path.resolve(__dirname, "..", "public", "index.html"));
+    });
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
