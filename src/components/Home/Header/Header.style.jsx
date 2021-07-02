@@ -53,7 +53,6 @@ export const NewLink = styled(Link)`
 	font-size:14px;
 	padding:8px 15px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #154682;
   min-width: 84px;
   max-height: 40px;
 }

@@ -29,12 +29,13 @@ export const Form = styled.div`
     flex-direction: column;
     width: 100%;
     padding: 20px;
-    & > * {
+    & > input, button {
       padding: 10px;
       margin: 10px;
       font-size: 20px;
       border: 1px solid ${init.color.border_gray};
       border-radius: 5px;
+      width: 95%;
     }
 `
 export const Button = styled.button`
@@ -48,7 +49,6 @@ export const Button = styled.button`
 	font-size:20px;
 	font-weight:bold;
 	text-decoration:none;
-	text-shadow:0px -1px 0px ${init.color.border_gray};
 `
 
 export const LogInButton = styled.button`
@@ -65,7 +65,7 @@ export const LogInButton = styled.button`
 	font-weight:bold;
 	padding:11px 23px;
 	text-decoration:none;
-	text-shadow:0px -1px 0px #86ae47;
+  width: 95%;
   :hover {
 	background:linear-gradient(to bottom, #a5cc52 5%, #b8e356 100%);
 	background-color:#a5cc52;

@@ -1,12 +1,13 @@
 import React from 'react';
 import * as style from './Register.style.jsx';
+import { Link } from 'react-router-dom'
 
 export default function Register() {
   return (
     <style.Layer>
       <style.Container>
         <style.Header>
-          <h1><a>Sign up for Mimic Pay</a></h1>
+          <h1><Link to='/'>Sign up for Mimic Pay</Link></h1>
         </style.Header>
         {/* <div>!!!Some of your info isn't correct. Please try again.</div> */}
         <style.Form>
@@ -16,7 +17,8 @@ export default function Register() {
           <input type="password" placeholder="Password" />
           <input type="password" placeholder="Confirm" />
           <style.Button>Register</style.Button>
-          <style.LogInButton>Log In Instead</style.LogInButton>
+          {/* <style.LogInButton>Log In Instead</style.LogInButton> */}
+            <Link to='login'><style.LogInButton>Log In Instead</style.LogInButton></Link>
         </style.Form>
       </style.Container>
     </style.Layer>
