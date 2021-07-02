@@ -61,7 +61,7 @@ const Button = styled.button`
 	font-size:15px;
 	font-weight:bold;
 	text-decoration:none;
-	text-shadow:0px -1px 0px ${init.color.border_gray};
+  width: 92%;
 `
 
 export {
