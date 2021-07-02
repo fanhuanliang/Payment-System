@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from "styled-components";
 
 export const Header = styled.header`
@@ -42,19 +43,19 @@ export const rightSide = styled.div`
     };
 `
 
-export const Button = styled.button`
+export const NewLink = styled(Link)`
 	background-color:#007dc1;
 	border-radius:28px;
 	border:1px solid #124d77;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
 	font-size:14px;
 	padding:8px 15px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #154682;
   min-width: 84px;
+  max-height: 40px;
 }
 :hover {
 	background-color:#0061a7;

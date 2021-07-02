@@ -2,8 +2,8 @@ import React from 'react';
 import * as style from './Header.style.jsx';
 
 export default function Header(props) {
-  // console.log(props)
-  const { logOut } = props;
+  console.log(props)
+  const { logOut, link } = props;
   return (
     <style.Header>
       <style.Wrapper>
@@ -12,10 +12,10 @@ export default function Header(props) {
             <a>Mimic Pay Logo</a>
           </div>
           <style.rightSide>
-            {logOut ? <style.Button>Log Out</style.Button> :
+            {logOut ? <style.NewLink to='/'>Log Out</style.NewLink> :
               <>
-                <style.Button>Log In</style.Button>
-                <style.Button>Sign Up</style.Button>
+                <style.NewLink to='/login'>Log In</style.NewLink>
+                <style.NewLink to='/register'>Sign Up</style.NewLink>
               </>
             }
           </style.rightSide>
