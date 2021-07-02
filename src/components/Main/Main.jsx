@@ -5,7 +5,7 @@ import Popup from './Popup/Popup.jsx'
 import store from '../../redux/store/index'
 
 export default function Main() {
-  console.log(store)
+  // console.log(store)
   console.log(store.getState().defaultState[0])
   const userOne = store.getState().defaultState[0]
   const logOut = true

@@ -22,6 +22,7 @@ const container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center
+  
   `
   const Form = styled.form`
   display: flex;
