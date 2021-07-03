@@ -9,6 +9,7 @@ import { GlobalStyle } from '../index.style.jsx';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const App = () => {
+  // console.log(window.__REDUX_DEVTOOLS_EXTENSION__() )
   return (
     <Router>
       <>

@@ -4,7 +4,7 @@ import User from './User/User.jsx'
 import * as style from './Users.style.jsx'
 
 export default function Users() {
-  const users = store.getState().defaultState;
+  const users = store.getState().login.defaultState;
   // console.log(users)
   return (
     <style.Wrapper>
