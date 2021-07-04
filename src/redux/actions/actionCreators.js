@@ -14,8 +14,19 @@ export const handleInitState = () => {
 }
 
 
-export const registerSubmitHandler = () => {
-  return {
-    type: type.REGISTER_SUBMIT_HANDLER
-  }
-}
+export const registerSubmitHandler = (registerData) => (dispatch) => {
+  // thunk allows us return function by passing dispatch
+  console.log(registerData);
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(registerData),
+  };
+  fetch("api/register", requestOptions)
+    .then((response) => response.json())
+    .then((data) =>
+      dispatch({
+        type: type.REGISTER_SUBMIT_HANDLER,
+      })
+    );
+};

@@ -18,13 +18,13 @@ export const Container = styled.div`
     border-radius: 10px;
 `
 
-export const Header = styled.div`
+export const Header = styled.header`
     font-family: emoji;
     font-size: 1.2em;
     padding: 10px;
     margin: 10px; 
 `
-export const Form = styled.div`
+export const Form = styled.form`
     display: flex;
     flex-direction: column;
     width: 100%;
