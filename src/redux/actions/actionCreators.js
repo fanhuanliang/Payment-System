@@ -1,4 +1,4 @@
-import * as type from './action.type'
+import * as type from './actionTypes'
 
 export const handleInputValue = (name, value) => {
   return {
@@ -12,11 +12,10 @@ export const handleInitState = () => {
     type: type.CLEAN_UP_STATE,
   };  
 }
-// export const handleRegisterValue = (name, value) => {
-//   return {
-//     type: type.REGISTER_INPUT_VALUE,
-//     payload: { [name]: value },
-//   };
-// }
 
-// export const 
+
+export const registerSubmitHandler = () => {
+  return {
+    type: type.REGISTER_SUBMIT_HANDLER
+  }
+}

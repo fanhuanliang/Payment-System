@@ -1,9 +1,17 @@
-import {createStore} from 'redux'
+import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "../reducer/index";
+import thunk from "redux-thunk";
 
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  // {}, // preloadedState
+  //enhancer
+  compose(
+    //it's a function(...arguments), return function obtained by composing the given functions from right to left.
+    applyMiddleware(thunk), //function, wrap multiple middleware to extend redux with custom functionality.
+    //redux-thunk lets the action creators invert control by dispatching functions. They would receive dispatch as an argument and may call it asynchronously.
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() //function.
+  )
 );
 //Redux DevTools with basic store. 
 //createStore(reducer, [preloadedState], [enhancer])

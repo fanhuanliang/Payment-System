@@ -2,7 +2,7 @@ import React from 'react'
 import * as style from './Login.style.jsx'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { handleInputValue, handleInitState } from '../../redux/action/action.creator'
+import { handleInputValue, handleInitState } from '../../redux/actions/actionCreators'
 
 export default function Login() {
   const { user, loginPassword } = useSelector(state => state.formReducer)

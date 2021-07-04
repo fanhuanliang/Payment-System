@@ -2,7 +2,7 @@ import React from 'react';
 import * as style from './Register.style.jsx';
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { handleInputValue, handleInitState } from '../../redux/action/action.creator'
+import { handleInputValue, handleInitState } from '../../redux/actions/actionCreators'
 
 export default function Register() {
   const { userName, email, phoneNumber, regPassword, regConfirmPassword } = useSelector(state => state.formReducer)
