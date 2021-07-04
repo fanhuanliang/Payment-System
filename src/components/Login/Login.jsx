@@ -2,17 +2,21 @@ import React from 'react'
 import * as style from './Login.style.jsx'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { handleInputValue } from '../../redux/action/action.creator'
+import { handleInputValue, handleInitState } from '../../redux/action/action.creator'
 
 export default function Login() {
-  const inputValue = useSelector(state => state.login.input)
-  const password = useSelector(state => state.login.password)
+  const { user, loginPassword } = useSelector(state => state.formReducer)
   const dispatch = useDispatch()
 
   const linkStyle = {
     backgroundColor: 'rgb(163, 205, 217)',
     border: '0px'
   };
+
+  React.useEffect(() => {
+    return dispatch(
+      handleInitState()
+      )}, [])
 
   const handleChange = (event) => {
     dispatch(
@@ -30,8 +34,8 @@ export default function Login() {
           <style.Form>
             <div><h1><Link to='/'>Mimic Pay</Link></h1></div>
             {/* <div>!!!Some of your info isn't correct. Please try again.</div> */}
-            <input type="text" value={inputValue} name='user' placeholder="Email or user name or mobile number" onChange={handleChange}/>
-            <input type="password" value={password} name='password' placeholder="Password" onChange={handleChange}></input>
+            <input type="text" value={user} name='user' placeholder="Email or user name or mobile number" onChange={handleChange}/>
+            <input type="password" value={loginPassword} name='loginPassword' placeholder="Password" onChange={handleChange}></input>
             <style.Button>Log In</style.Button>
         </style.Form>
           <style.BottomContainer>
