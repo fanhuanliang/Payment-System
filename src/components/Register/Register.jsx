@@ -1,8 +1,27 @@
 import React from 'react';
 import * as style from './Register.style.jsx';
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { handleInputValue, handleInitState } from '../../redux/action/action.creator'
 
 export default function Register() {
+  const { userName, email, phoneNumber, regPassword, regConfirmPassword } = useSelector(state => state.formReducer)
+  const dispatch = useDispatch()
+  React.useEffect(() => {
+    return dispatch(
+      handleInitState()
+    )
+  }, [])
+
+  const handleChange = (event) => {
+    dispatch(
+      handleInputValue(
+        event.target.name,
+        event.target.value
+      )
+    )
+  }
+
   return (
     <style.Layer>
       <style.Container>
@@ -11,11 +30,11 @@ export default function Register() {
         </style.Header>
         {/* <div>!!!Some of your info isn't correct. Please try again.</div> */}
         <style.Form>
-          <input type="text" placeholder="Username" />
-          <input type="email" placeholder="Email" />
-          <input type="text" placeholder="Phone number" />
-          <input type="password" placeholder="Password" />
-          <input type="password" placeholder="Confirm" />
+          <input type="text" name='userName' placeholder="Username" value={userName} onChange={handleChange} />
+          <input type="email" name='email' placeholder="Email" value={email} onChange={handleChange} />
+          <input type="text" name='phoneNumber' placeholder="Phone number" value={phoneNumber} onChange={handleChange} />
+          <input type="password" name='regPassword' placeholder="Password" value={regPassword} onChange={handleChange} />
+          <input type="password" name='regConfirmPassword' placeholder="Confirm" value={regConfirmPassword} onChange={handleChange} />
           <style.Button>Register</style.Button>
           {/* <style.LogInButton>Log In Instead</style.LogInButton> */}
             <Link to='login'><style.LogInButton>Log In Instead</style.LogInButton></Link>
