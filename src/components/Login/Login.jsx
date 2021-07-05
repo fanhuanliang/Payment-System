@@ -2,7 +2,7 @@ import React from 'react'
 import * as style from './Login.style.jsx'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { handleInputValue, handleInitState } from '../../redux/actions/actionCreators'
+import { handleInputValue, handleInitState, loginSubmitHandler} from '../../redux/actions/actionCreators'
 
 export default function Login() {
   const { user, loginPassword } = useSelector(state => state.formReducer)
@@ -23,15 +23,25 @@ export default function Login() {
       handleInputValue(
         event.target.name,
         event.target.value
-      )
-    );
+        )
+        );
+      }
+      
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('submit')
+        const password = loginPassword
+        const account = user
+        dispatch(
+          loginSubmitHandler({ account, password})
+        )
   }
 
   return (
     <style.TopLayer>
       <style.Wrapper>
         <style.container>
-          <style.Form>
+          <style.Form onSubmit={handleSubmit}>
             <div><h1><Link to='/'>Mimic Pay</Link></h1></div>
             {/* <div>!!!Some of your info isn't correct. Please try again.</div> */}
             <input type="text" value={user} name='user' placeholder="Email or user name or mobile number" onChange={handleChange}/>

@@ -14,6 +14,24 @@ export const handleInitState = () => {
   };
 };
 
+export const loginSubmitHandler = (loginData) => (dispatch) => {
+  console.log('action', loginData)
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(loginData),
+  };
+  fetch("api/login", requestOptions)
+    .then((response) => response.json())
+    .then((data) =>
+    console.log(data),
+      // dispatch({
+      //   type: type.REGISTER_SUBMIT_HANDLER,
+      // })
+    )
+    .catch(err=>console.log(err))
+}
+
 export const registerSubmitHandler = (registerData) => (dispatch) => {
   // thunk allows us return function by passing dispatch
   axios
