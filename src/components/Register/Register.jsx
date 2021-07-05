@@ -5,39 +5,41 @@ import { useSelector, useDispatch } from 'react-redux';
 import { handleInputValue, handleInitState, registerSubmitHandler } from '../../redux/actions/actionCreators'
 
 export default function Register() {
-  const { userName, email, phoneNumber, regPassword, regConfirmPassword } = useSelector(state => state.formReducer)
-  console.log('userName', userName)
+  const { userName, email, phoneNumber, regPassword, regConfirmPassword, errMessage } = useSelector(state => state.formReducer)
+  // console.log('userName', userName)
   const dispatch = useDispatch()
   React.useEffect(() => {
     return dispatch(
       handleInitState()
-    )
-  }, [])
-
-  const handleChange = (event) => {
-    dispatch(
-      handleInputValue(
-        event.target.name,
-        event.target.value
       )
-    )
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const registerData = { userName, email, phoneNumber, regPassword, regConfirmPassword }
+    }, [])
+    
+    const handleChange = (event) => {
+      dispatch(
+        handleInputValue(
+          event.target.name,
+          event.target.value
+          )
+          )
+        }
+        
+        const handleSubmit = (event) => {
+          event.preventDefault();
+          const password = regConfirmPassword
+    const registerData = { userName, email, phoneNumber, password }
     console.log('registerData', registerData)
     dispatch(
       registerSubmitHandler(registerData)
     )
   }
+  
   return (
     <style.Layer>
       <style.Container>
         <style.Header>
           <h1><Link to='/'>Sign up for Mimic Pay</Link></h1>
         </style.Header>
-        {/* <div>!!!Some of your info isn't correct. Please try again.</div> */}
+        {errMessage ? <div>{errMessage}</div> : null}
         <style.Form onSubmit={handleSubmit}>
           <input type="text" name='userName' placeholder="Username" value={userName} onChange={handleChange} />
           <input type="email" name='email' placeholder="Email" value={email} onChange={handleChange} />
