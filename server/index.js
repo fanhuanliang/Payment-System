@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/api/login", async (req, res) => {
+  console.log('login server')
   try {
     db.loginUser(req.body, async (err, result) => {
       if (err) {
@@ -49,7 +50,7 @@ app.post("/api/login", async (req, res) => {
 });
 
 app.post("/api/register", async (req, res) => {
-  console.log('postReg',req.body)
+  // console.log('postReg',req.body)
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = req.body;

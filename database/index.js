@@ -27,8 +27,12 @@ const loginUser = (data, callback) => {
   // data: {email: 'fan@gmail.com'}
   // const data = {user: data.acc, email: data.acc, phone: data.acc}
   const newData = {
-    $or: [{  userName: data.acc }, { email: data.acc },{ phoneNumber: data.acc }]
-  }
+    $or: [
+      { userName: data.account },
+      { email: data.account },
+      { phoneNumber: data.account },
+    ],
+  };
   console.log(newData)
   User.findOne(newData, (err, result) => {
     if (err) {
