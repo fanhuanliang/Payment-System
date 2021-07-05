@@ -7,16 +7,16 @@ const jwt = require("jsonwebtoken");
 const port = process.env.port || 5000; //whatever is in the environment variable PORT, or 3000 if there's nothing there.
 const db = require("../database/index.js");
 const bodyParser = require("body-parser");
-// const cors = 
+const cors = require("cors");
 
 app.use(express.static(path.join(__dirname, "..", "public")));
 
+app.use(cors());
+// support parsing of application/json type post data
+app.use(bodyParser.json());
 
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/api/login", async (req, res) => {
   try {
@@ -49,14 +49,16 @@ app.post("/api/login", async (req, res) => {
 });
 
 app.post("/api/register", async (req, res) => {
+  console.log('postReg',req.body)
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = req.body;
     user.password = hashedPassword;
-    console.log('user', user)
+    // console.log('user', user)
     db.registerUser(user, (err, result) => {
       if (err) {
-        res.status(404).send(err);
+        const errMes = "Some of your info isn't correct. Please try again"
+        res.status(404).send(errMes);
       } else {
         // console.log(result);
         res.status(200).send(result);
@@ -103,8 +105,12 @@ function verifyToken(req, res, next) {
   }
 }
 // wildcard handles any requests that don't match the ones ABOVE
-    app.get("*", (req, res) => {
-      console.log('here', res)
+    app.get("/register", (req, res) => {
+      // console.log('here', res)
+      res.sendFile(path.resolve(__dirname, "..", "public", "index.html"));
+    });
+    app.get("/login", (req, res) => {
+      // console.log('here', res)
       res.sendFile(path.resolve(__dirname, "..", "public", "index.html"));
     });
 app.listen(port, () => {
