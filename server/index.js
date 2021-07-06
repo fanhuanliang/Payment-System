@@ -90,32 +90,42 @@ app.post("/api/register", async (req, res) => {
 });
 
 app.get("/api/findUser", verifyToken, (req, res) => {
-  console.log(req.user);
-  res.json(req.user);
+  const { account } = req.body;
+  console.log("server", account);
+  if (!account) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+  try {
+    db.loginUser(req.body, async (err, user) => {
+      if (err) {
+        //check if user exist
+        res.status(404).json({ msg: err });
+      } else {
+        res.status(200).json({ msg: {userName: user.userName} });
+      }
+    });
+  } catch {
+    res.status(500);
+  }
 });
 
-// // Verify Token
-// function verifyToken(req, res, next) {
-//   //Get auth header value
-//   const bearerHeader = req.headers["authorization"];
-//   //check if bearer is undefined
-//   if (typeof bearerHeader !== "undefined") {
-//     //Authorization: Bearer <access_token>
-//     const bearerToken = bearerHeader.split(" ")[1];
-//     // console.log(bearerToken);
-//     jwt.verify(bearerToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-//       if (err) {
-//         return res.sendStatus(403).json({msg: 'Token is not valid'});
-//       }
-//       req.user = user;
-//       next();
-//     });
-//     //next middleware
-//   } else {
-//     //Forbidden
-//     res.sendStatus(401).json({msg: 'No token, authorization denied'});
-//   }
-// }
+app.put("/api/transfer", verifyToken, (req, res) => {
+  console.log(req.body, req.user)
+  // res.status(200).send('transferServer');
+  db.transferMoney(
+    {
+      payer: req.user.userName,
+      payee: req.body.userName,
+      amount: req.body.amount,
+    },
+    (err, result) => {
+      if (err) {
+      } else {
+      }
+    }
+  );
+})
+
 // wildcard handles any requests that don't match the ones ABOVE
 app.get("*", (req, res) => {
   // console.log('here', res)
