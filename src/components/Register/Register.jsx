@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { handleInputValue, handleInitState, registerSubmitHandler } from '../../redux/actions/actionCreators'
 
 export default function Register() {
-  const { userName, email, phoneNumber, regPassword, regConfirmPassword, errMessage } = useSelector(state => state.formReducer)
+  const { userName, email, regPassword, regConfirmPassword, errMessage } = useSelector(state => state.formReducer)
   // console.log('userName', userName)
   const dispatch = useDispatch()
   React.useEffect(() => {
@@ -28,7 +28,7 @@ export default function Register() {
     const password = regConfirmPassword
     // console.log('registerData', registerData)
     dispatch(
-      registerSubmitHandler({ userName, email, phoneNumber, password })
+      registerSubmitHandler({ userName, email, password })
     )
   }
 
@@ -42,7 +42,6 @@ export default function Register() {
         <style.Form onSubmit={handleSubmit}>
           <input type="text" name='userName' placeholder="Username" value={userName} onChange={handleChange} />
           <input type="email" name='email' placeholder="Email" value={email} onChange={handleChange} />
-          <input type="text" name='phoneNumber' placeholder="Phone number" value={phoneNumber} onChange={handleChange} />
           <input type="password" name='regPassword' placeholder="Password" value={regPassword} onChange={handleChange} />
           <input type="password" name='regConfirmPassword' placeholder="Confirm" value={regConfirmPassword} onChange={handleChange} />
           <style.Button >Register</style.Button>

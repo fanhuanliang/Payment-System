@@ -44,7 +44,7 @@ export default function Login() {
           <style.Form onSubmit={handleSubmit}>
             <div><h1><Link to='/'>Mimic Pay</Link></h1></div>
             {/* <div>!!!Some of your info isn't correct. Please try again.</div> */}
-            <input type="text" value={user} name='user' placeholder="Email or user name or mobile number" onChange={handleChange}/>
+            <input type="text" value={user} name='user' placeholder="Email or user name" onChange={handleChange}/>
             <input type="password" value={loginPassword} name='loginPassword' placeholder="Password" onChange={handleChange}></input>
             <style.Button>Log In</style.Button>
         </style.Form>
