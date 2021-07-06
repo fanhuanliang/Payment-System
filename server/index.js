@@ -6,41 +6,55 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const port = process.env.port || 5000; //whatever is in the environment variable PORT, or 3000 if there's nothing there.
 const db = require("../database/index.js");
-const bodyParser = require("body-parser");
 const cors = require("cors");
+const verifyToken = require("./verifyToken");
 
 app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.use(cors());
 // support parsing of application/json type post data
-app.use(bodyParser.json());
-
+// app.use(bodyParser.json());
+app.use(express.json());
 //support parsing of application/x-www-form-urlencoded post data
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
+//authentication
 app.post("/api/login", async (req, res) => {
-  console.log('login server')
+  // console.log("login server", req.body);
+  const { account, password } = req.body;
+  if (!account || !password) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
   try {
-    db.loginUser(req.body, async (err, result) => {
+    db.loginUser(req.body, async (err, user) => {
       if (err) {
-        res.status(404).send(err);
+        //check if user exist
+        res.status(404).json({ msg: err });
       } else {
-        if (await bcrypt.compare(req.body.password, result.password)) {
+        //Validate password
+        if (await bcrypt.compare(req.body.password, user.password)) {
           //jwt.sign(payload, secretOrPrivateKey, [options, callback])
-          console.log(result)
-          let user = result.userName
-          jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
-            if (err) {
-              res.sendStatus(403);
-            } else {
-              res.status(200).json({ token });
-              // res.status(200).send(result);
+          let { userName } = user;
+          jwt.sign(
+            { userName },
+            process.env.ACCESS_TOKEN_SECRET,
+            (err, token) => {
+              if (err) {
+                res.sendStatus(403);
+              } else {
+                // console.log("token match", { token, user });
+                res
+                  .status(200)
+                  .json({
+                    msg: { token, user: { id: user.id, userName: user.userName } },
+                  });
+              }
             }
-          });
+          );
         } else {
-          res
-            .status(200)
-            .send("Some of your info isn't correct. Please try again.");
+          // console.log("passwordWrong");
+          res.status(400).json({ msg: "Invalid credentials" });
         }
       }
     });
@@ -51,69 +65,63 @@ app.post("/api/login", async (req, res) => {
 
 app.post("/api/register", async (req, res) => {
   // console.log('postReg',req.body)
+  const { userName, email, password } = req.body;
+  if (!userName || !email || !password) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = req.body;
     user.password = hashedPassword;
+    const balance = { balance: 1000.00 }; // default balance 1000
     // console.log('user', user)
-    db.registerUser(user, (err, result) => {
+    db.registerUser({ ...user, ...balance }, (err, user) => {
       if (err) {
-        const errMes = "Some of your info isn't correct. Please try again"
-        res.status(404).send(errMes);
+        res.status(404).json({ msg: err });
       } else {
-        // console.log(result);
-        res.status(200).send(result);
+        const { id, userName } = user;
+        const token = jwt.sign({ userName }, process.env.ACCESS_TOKEN_SECRET);
+        res.status(200).json({ token, user: { id: id, userName: userName } });
       }
     });
   } catch {
-    res.status(500).send();
+    res.status(500);
   }
-  // console.log("req1", req.body);
-  // db.registerUser(req.body, (err, result) => {
-  //   if (err) {
-  //     res.status(404).send(err);
-  //   } else {
-  //     // console.log(result);
-  //     res.status(200).send(result);
-  //   }
-  // });
 });
 
 app.get("/api/findUser", verifyToken, (req, res) => {
+  console.log(req.user);
   res.json(req.user);
 });
 
-// Verify Token
-function verifyToken(req, res, next) {
-  //Get auth header value
-  const bearerHeader = req.headers["authorization"];
-  //check if bearer is undefined
-  if (typeof bearerHeader !== "undefined") {
-    //Authorization: Bearer <access_token>
-    const bearerToken = bearerHeader.split(" ")[1];
-    // console.log(bearerToken);
-    jwt.verify(bearerToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-      if (err) {
-        return res.sendStatus(403);
-      }
-      req.user = user;
-      next();
-    });
-    //next middleware
-  } else {
-    //Forbidden
-    res.sendStatus(401);
-  }
-}
+// // Verify Token
+// function verifyToken(req, res, next) {
+//   //Get auth header value
+//   const bearerHeader = req.headers["authorization"];
+//   //check if bearer is undefined
+//   if (typeof bearerHeader !== "undefined") {
+//     //Authorization: Bearer <access_token>
+//     const bearerToken = bearerHeader.split(" ")[1];
+//     // console.log(bearerToken);
+//     jwt.verify(bearerToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+//       if (err) {
+//         return res.sendStatus(403).json({msg: 'Token is not valid'});
+//       }
+//       req.user = user;
+//       next();
+//     });
+//     //next middleware
+//   } else {
+//     //Forbidden
+//     res.sendStatus(401).json({msg: 'No token, authorization denied'});
+//   }
+// }
 // wildcard handles any requests that don't match the ones ABOVE
-    app.get("/register", (req, res) => {
-      // console.log('here', res)
-      res.sendFile(path.resolve(__dirname, "..", "public", "index.html"));
-    });
-    app.get("/login", (req, res) => {
-      // console.log('here', res)
-      res.sendFile(path.resolve(__dirname, "..", "public", "index.html"));
-    });
+app.get("*", (req, res) => {
+  // console.log('here', res)
+  res.sendFile(path.resolve(__dirname, "..", "public", "index.html"));
+});
+
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
