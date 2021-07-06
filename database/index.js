@@ -29,7 +29,7 @@ const loginUser = (data, callback) => {
       { email: data.account },
     ],
   };
-  console.log(userInfo)
+  // console.log(userInfo)
   User.findOne(userInfo, (err, result) => {
     if (err) {
       callback(err);
@@ -54,7 +54,34 @@ const registerUser = (data, callback) => {
     }
   });
 };
+
+const transferMoney = ({ payer, payee, amount }, callback) => {
+  console.log(payer, payee, amount);
+  const filterPayer = { userName: payer };
+  User.findOne(filterPayer, async (err, result) => {
+    if (err) {
+      callback(err);
+    } else {
+      console.log(result.balance);
+      if (result.balance < amount) {
+        callback({ msg: "Not enough balance" });
+      } else {
+        const newBalance = result.balance - amount;
+        console.log("result1", result.balance, newBalance, filterPayer);
+        User.updateOne(
+          filterPayer,
+          { $set: { balance: newBalance } },
+          function (err, res) {}
+        );
+        console.log('result2', result.balance)
+
+      }
+    }
+  });
+}; 
+
 module.exports = {
   loginUser,
   registerUser,
+  transferMoney,
 };
