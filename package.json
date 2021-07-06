@@ -32,8 +32,9 @@
     "webpack-cli": "^4.7.2"
   },
   "scripts": {
-    "devStart": "nodemon server",
-    "build": "webpack --watch"
+    "devStart": "nodemon server/index.js",
+    "build": "webpack --watch",
+    "startAuth": "server/authServer.js"
   },
   "repository": {
     "type": "git",
