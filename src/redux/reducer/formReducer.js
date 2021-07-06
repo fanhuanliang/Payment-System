@@ -7,7 +7,6 @@ const initialState = {
   loginPassword: "",
   userName: "",
   email: "",
-  phoneNumber: "",
   regPassword: "",
   regConfirmPassword: "",
   errMessage: ''

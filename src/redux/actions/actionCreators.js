@@ -23,13 +23,13 @@ export const loginSubmitHandler = (loginData) => (dispatch) => {
   };
   fetch("api/login", requestOptions)
     .then((response) => response.json())
-    .then((data) =>
-    console.log(data),
+    .then(
+      (data) => console.log('data',data.msg)
       // dispatch({
       //   type: type.REGISTER_SUBMIT_HANDLER,
       // })
     )
-    .catch(err=>console.log(err))
+    .catch((err) => console.log('loginErr', err,));
 }
 
 export const registerSubmitHandler = (registerData) => (dispatch) => {
@@ -40,13 +40,13 @@ export const registerSubmitHandler = (registerData) => (dispatch) => {
       console.log("response", response);
     })
     .catch((error) => {
+      console.log("error", error.response.data);
       dispatch({
         type: type.REGISTER_ERROR_HANDLER,
         payload: {
-          errMessage: "Some of your info isn't correct. Please try again.",
+          errMessage: error.response.data.msg,
         },
       });
-      console.log("error", error);
     });
 };
 // const requestOptions = {
