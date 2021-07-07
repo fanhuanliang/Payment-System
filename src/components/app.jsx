@@ -1,8 +1,6 @@
 import React from 'react';
 import Login from './Login/Login.jsx';
-import Header from './Home/Header/Header.jsx';
-import Content from './Home/Content/Content.jsx';
-import Footer from './Home/Footer/Footer.jsx';
+import Home from './Home/Home.jsx';
 import Register from './Register/Register.jsx';
 import Main from './Main/Main.jsx';
 import { GlobalStyle } from '../index.style.jsx';
@@ -16,9 +14,7 @@ const App = () => {
       <GlobalStyle />
         <Switch>
           <Route exact path='/'>
-        <Header />
-            <Content />
-            <Footer />
+          {true ?  <Home />:<Main />}
           </Route>
           <Route path='/login'>
             <Login />
