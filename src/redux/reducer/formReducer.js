@@ -1,9 +1,9 @@
-import dummyData from '../../../DummyData'
+// import dummyData from '../../../DummyData'
 import * as type from '../actions/actionTypes'
 
 const initialState = {
-  data: [...dummyData],
-  user: "",
+  data: [],
+  user: "", //login component user input
   loginPassword: "",
   userName: "",
   email: "",
