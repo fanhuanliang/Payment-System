@@ -55,29 +55,59 @@ const registerUser = (data, callback) => {
   });
 };
 
-const transferMoney = ({ payer, payee, amount }, callback) => {
-  console.log(payer, payee, amount);
+async function transferMoney ({ payer, payee, amount }, callback) {
+  console.log('transferMoney',payer, payee, amount);
   const filterPayer = { userName: payer };
-  User.findOne(filterPayer, async (err, result) => {
-    if (err) {
-      callback(err);
-    } else {
-      console.log(result.balance);
-      if (result.balance < amount) {
-        callback({ msg: "Not enough balance" });
-      } else {
-        const newBalance = result.balance - amount;
-        console.log("result1", result.balance, newBalance, filterPayer);
-        User.updateOne(
-          filterPayer,
-          { $set: { balance: newBalance } },
-          function (err, res) {}
-        );
-        console.log('result2', result.balance)
-
-      }
+  const filterPayee = { userName: payee };
+  // User.findOneAndUpdate(
+  //   filterPayer,
+  //   { $inc: { balance: -amount } },
+  //   { new: true },
+  //   function (err, response) {
+  //     if (err) {
+  //       callback(err);
+  //     } else {
+  //       console.log('transferMoney', response)
+  //       callback(response);
+  //     }
+  //   }
+  // );
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    const sender = await User.findOne(filterPayer);
+    // const sender = await User.findOne(filterPayer).session(session);
+    console.log("sender", sender, amount);
+    sender.balance = sender.balance - Number(amount);
+    if (sender.balance < 0) {
+      callback(`User - ${sender.userName} has insufficient funds`);
+    } else{
+      await sender.save();
+      const receiver = await User.findOne(filterPayee);
+      // const receiver = await User.findOne(filterPayee).session(session);
+      receiver.balance = receiver.balance + Number(amount);
+      console.log("session", receiver);
+  
+      await receiver.save();
+      await session.commitTransaction();
+      callback(null, sender);
     }
-  });
+  } catch (error) {
+    // if anything fails above just rollback the changes here
+
+    // this will rollback any changes made in the database
+    await session.abortTransaction();
+
+    // logging the error
+    // console.error('error', error);
+
+    // rethrow the error
+    callback(error);
+  } finally {
+    // ending the session
+    console.log('endsession')
+    session.endSession();
+  }
 }; 
 
 module.exports = {
