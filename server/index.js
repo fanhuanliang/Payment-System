@@ -47,7 +47,7 @@ app.post("/api/login", async (req, res) => {
                 res
                   .status(200)
                   .json({
-                    msg: { token, user: { id: user.id, userName: user.userName } },
+                    msg: { token, user: { id: user.id, userName: user.userName, balance:user.balance} },
                   });
               }
             }
@@ -99,6 +99,7 @@ app.get("/api/findUser", verifyToken, (req, res) => {
     db.loginUser(req.body, async (err, user) => {
       if (err) {
         //check if user exist
+        console.log(err)
         res.status(404).json({ msg: err });
       } else {
         res.status(200).json({ msg: {userName: user.userName} });
@@ -110,7 +111,7 @@ app.get("/api/findUser", verifyToken, (req, res) => {
 });
 
 app.put("/api/transfer", verifyToken, (req, res) => {
-  console.log(req.body, req.user)
+  console.log('transfer endpoint',req.body, req.user)
   // res.status(200).send('transferServer');
   db.transferMoney(
     {
@@ -120,7 +121,11 @@ app.put("/api/transfer", verifyToken, (req, res) => {
     },
     (err, result) => {
       if (err) {
+        console.log(err)
+        res.status(400).json({msg:err})
       } else {
+        console.log('transfer,success, server', result)
+        res.status(400).json({ msg: result });
       }
     }
   );
