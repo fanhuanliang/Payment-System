@@ -63,6 +63,23 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+//api endpoint for retrieve login user info
+app.get("/api/authorize", verifyToken, (req, res) => {
+  console.log("authorize", req.user);
+  try {
+    db.loginUser(req.user, async (err, user) => {
+      if (err) {
+        //check if user exist
+        console.log(err);
+        res.status(404).json({ msg: err });
+      } else {
+        res.status(200).json({ msg: { userName: user.userName, balance: user.balance } });
+      }
+    });
+  } catch {
+    res.status(500);
+  }
+});
 app.post("/api/register", async (req, res) => {
   // console.log('postReg',req.body)
   const { userName, email, password } = req.body;
