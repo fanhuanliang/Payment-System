@@ -4,6 +4,7 @@ import Content from './Content/Content.jsx';
 import Footer from './Footer/Footer.jsx';
 
 export default function Home() {
+
   return (
     <>
       <Header />
