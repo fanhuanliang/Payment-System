@@ -2,14 +2,12 @@
 import * as type from '../actions/actionTypes'
 
 const initialState = {
-  data: [],
   user: "", //login component user input
   loginPassword: "",
   userName: "",
   email: "",
   regPassword: "",
   regConfirmPassword: "",
-  errMessage: ''
 };
 export default (state = initialState, action) => {
   // console.log(action.payload) 

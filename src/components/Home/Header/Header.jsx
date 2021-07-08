@@ -6,7 +6,7 @@ import { logout } from '../../../redux/actions/actionCreators'
 
 export default function Header() {
   const {token} = useSelector(state=>state.authReducer)
-  console.log(token, token !== null)
+
   const dispatch = useDispatch()
   const handleLogout = () => {
     dispatch(logout())

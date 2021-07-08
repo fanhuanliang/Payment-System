@@ -17,55 +17,59 @@ export const handleInitState = () => {
 };
 
 //check token & load user
-export const loadUser = () => (dispatch, getState)=> {
+export const loadUser = () => (dispatch, getState) => {
   // user loading
   dispatch({ type: type.USER_LOADING });
   axios
     .get("/api/auth/user", tokenConfig(getState))
-    .then(res => 
-      {console.log(res.data);
-      dispatch({ 
-      type: type.USER_LOADED, 
-      payload: res.data 
-    })})
+    .then((res) => {
+      console.log(res.data);
+      dispatch({
+        type: type.USER_LOADED,
+        payload: res.data,
+      });
+    })
     .catch((err) => {
-      console.log(err)
-      dispatch(
-        handleErrors(err.response.data, err.response.status)
-        );
+      console.log(err);
+      dispatch(handleErrors(err.response.data, err.response.status));
       dispatch({ type: type.AUTH_ERROR });
     });
 };
 
 export const loginSubmitHandler = (loginData) => (dispatch) => {
   console.log("action", loginData);
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(loginData),
-  };
-  fetch("http://localhost:4000/api/login", requestOptions)
-    .then((response) => response.json())
-    .then(
-      (data) => console.log("data", data.msg)
-      // dispatch({
-      //   type: type.REGISTER_SUBMIT_HANDLER,
-      // })
-    )
-    .catch((err) => console.log("loginErr", err));
+  axios
+    .post("http://localhost:4000/api/login", loginData)
+    .then((response) => {
+      console.log("response, login", response.data);
+      dispatch({
+        type: type.LOGIN_SUCCESS,
+        payload: response.data,
+      });
+      dispatch({ type: type.CLEAN_UP_STATE });
+    })
+    .catch((error) => {
+      console.log("error, login", error);
+      console.log("loginErr", error.response.data , error.response.status);
+      dispatch({
+        type: type.LOGIN_FAIL,
+      });
+      dispatch(
+        handleErrors(error.response.data, error.response.status, "LOGIN_FAIL")
+      );
+    });
 };
 
 export const registerSubmitHandler = (registerData) => (dispatch) => {
-
   // thunk allows us return function by passing dispatch
   axios
     .post("http://localhost:4000/api/register", registerData)
     .then((response) => {
-      console.log("response, actionRegister", response.data);
+      // console.log("response, actionRegister", response.data);
       dispatch({
         type: type.REGISTER_SUCCESS,
-        payload: response.data 
-      })
+        payload: response.data,
+      });
       dispatch({ type: type.CLEAN_UP_STATE });
     })
     .catch((error) => {
@@ -73,17 +77,23 @@ export const registerSubmitHandler = (registerData) => (dispatch) => {
       dispatch({
         type: type.REGISTER_FAIL,
       });
-      dispatch(handleErrors(error.response.data, error.response.status, 'REGISTER_FAIL'));
+      dispatch(
+        handleErrors(
+          error.response.data,
+          error.response.status,
+          "REGISTER_FAIL"
+        )
+      );
     });
 };
 
 //handle logout user
 export const logout = () => {
-  console.log('action logout')
+  console.log("action logout");
   return {
-    type: type.LOGOUT_SUCCESS
+    type: type.LOGOUT_SUCCESS,
   };
-}
+};
 
 //config the token
 export const tokenConfig = (getState) => {

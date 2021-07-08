@@ -1,7 +1,6 @@
 import * as type from "../actions/actionTypes";
 
 const initialState = {
-  data: [],
   userName: "test",
   balance:0,
   searchInput: '',
