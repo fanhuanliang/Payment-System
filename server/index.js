@@ -65,12 +65,12 @@ app.use(express.urlencoded({ extended: true }));
 
 //api endpoint for retrieve login user info
 app.get("/api/auth/user", verifyToken, (req, res) => {
-  console.log("user", req.user.userName);
+  // console.log("user", req.user.userName);
   try {
     db.loginUser({account: req.user.userName}, async (err, user) => {
       if (err) {
         //check if user exist
-        console.log(err);
+        // console.log(err);
         res.status(404).json({ msg: err });
       } else {
         res.status(200).json({ msg: { userName: user.userName, balance: user.balance } });
@@ -117,7 +117,7 @@ app.get("/api/findUser", verifyToken, (req, res) => {
     db.loginUser(req.body, async (err, user) => {
       if (err) {
         //check if user exist
-        console.log(err)
+        // console.log(err)
         res.status(404).json({ msg: err });
       } else {
         res.status(200).json({ msg: {userName: user.userName} });
@@ -142,7 +142,7 @@ app.put("/api/transfer", verifyToken, (req, res) => {
         console.log(err)
         res.status(400).json({msg:err})
       } else {
-        console.log('transfer,success, server', result)
+        // console.log('transfer,success, server', result)
         res.status(400).json({ msg: result });
       }
     }
