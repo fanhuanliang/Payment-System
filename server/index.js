@@ -64,10 +64,10 @@ app.use(express.urlencoded({ extended: true }));
 // });
 
 //api endpoint for retrieve login user info
-app.get("/api/authorize", verifyToken, (req, res) => {
-  console.log("authorize", req.user);
+app.get("/api/auth/user", verifyToken, (req, res) => {
+  console.log("user", req.user.userName);
   try {
-    db.loginUser(req.user, async (err, user) => {
+    db.loginUser({account: req.user.userName}, async (err, user) => {
       if (err) {
         //check if user exist
         console.log(err);
