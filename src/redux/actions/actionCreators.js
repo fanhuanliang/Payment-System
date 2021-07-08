@@ -56,27 +56,32 @@ export const loginSubmitHandler = (loginData) => (dispatch) => {
 };
 
 export const registerSubmitHandler = (registerData) => (dispatch) => {
+
   // thunk allows us return function by passing dispatch
   axios
     .post("http://localhost:4000/api/register", registerData)
     .then((response) => {
-      console.log("response", response);
+      console.log("response, actionRegister", response.data);
+      dispatch({
+        type: type.REGISTER_SUCCESS,
+        payload: response.data 
+      })
     })
     .catch((error) => {
-      console.log("error", error.response.data);
+      console.log("error, register", error);
       dispatch({
-        type: type.REGISTER_ERROR_HANDLER,
-        payload: {
-          errMessage: error.response.data.msg,
-        },
+        type: type.REGISTER_FAIL,
       });
+      dispatch(
+        handleErrors(err.response.data, err.response.status)
+        );
     });
 };
 
 export const tokenConfig = (getState) => {
   // Get token from localstorage
   const token = getState().authReducer.token;
-  console.log("localStorage", getState().authReducer);
+  console.log("localStorage", token);
   // Headers
   const config = {
     headers: {

@@ -24,7 +24,6 @@ export default (state=initialState, action) => {
     case type.LOGIN_SUCCESS:
     case type.REGISTER_SUCCESS:
       console.log('action.payload',action.payload, action.payload.token);
-      localStorage.setItem('token', action.payload.token)
       return {
         ...state,
         ...action.payload,
@@ -40,7 +39,8 @@ export default (state=initialState, action) => {
         ...state,
         token: null,
         isAuthenticated: false,
-        isLoading:false
+        isLoading:false,
+        user: null
       };
       default:
         return state;
