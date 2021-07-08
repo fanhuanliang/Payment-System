@@ -66,18 +66,26 @@ export const registerSubmitHandler = (registerData) => (dispatch) => {
         type: type.REGISTER_SUCCESS,
         payload: response.data 
       })
+      dispatch({ type: type.CLEAN_UP_STATE });
     })
     .catch((error) => {
       console.log("error, register", error);
       dispatch({
         type: type.REGISTER_FAIL,
       });
-      dispatch(
-        handleErrors(err.response.data, err.response.status)
-        );
+      dispatch(handleErrors(error.response.data, error.response.status, 'REGISTER_FAIL'));
     });
 };
 
+//handle logout user
+export const logout = () => {
+  console.log('action logout')
+  return {
+    type: type.LOGOUT_SUCCESS
+  };
+}
+
+//config the token
 export const tokenConfig = (getState) => {
   // Get token from localstorage
   const token = getState().authReducer.token;

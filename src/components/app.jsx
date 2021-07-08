@@ -22,7 +22,7 @@ const App = () => {
       <GlobalStyle />
         <Switch>
           <Route exact path='/'>
-            {!isAuthenticated ? <Home /> : <Main user={user}/>}
+            <Home /> 
           </Route>
           <Route path='/login'>
             <Login />

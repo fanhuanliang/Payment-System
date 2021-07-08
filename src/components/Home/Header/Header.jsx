@@ -1,10 +1,17 @@
 import React from 'react';
 import * as style from './Header.style.jsx';
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../../redux/actions/actionCreators'
 
-export default function Header(props) {
-  // console.log(props)
-  const { logOut} = props;
+export default function Header() {
+  const {token} = useSelector(state=>state.authReducer)
+  console.log(token, token !== null)
+  const dispatch = useDispatch()
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+  
   return (
     <style.Header>
       <style.Wrapper>
@@ -13,7 +20,7 @@ export default function Header(props) {
             <Link to='/'>Mimic Pay Logo</Link>
           </div>
           <style.rightSide>
-            {logOut ? <style.NewLink to='/'>Log Out</style.NewLink> :
+            {token !== null ? <style.NewLink to='/' onClick={handleLogout}>Log Out</style.NewLink> :
               <>
                 <style.NewLink to='/login'>Log In</style.NewLink>
                 <style.NewLink to='/register'>Sign Up</style.NewLink>

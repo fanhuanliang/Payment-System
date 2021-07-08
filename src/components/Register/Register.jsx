@@ -3,10 +3,12 @@ import * as style from './Register.style.jsx';
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { handleInputValue, handleInitState, registerSubmitHandler } from '../../redux/actions/actionCreators'
+import { clearErrors } from '../../redux/actions/errorActions'
 
 export default function Register() {
   const { userName, email, regPassword, regConfirmPassword, errMessage } = useSelector(state => state.formReducer)
-  // console.log('userName', userName)
+  const {msg, id} = useSelector(state=>state.errorReducer)
+  // console.log('userName', msg, id)
   const dispatch = useDispatch()
   React.useEffect(() => {
     return dispatch(
@@ -23,6 +25,11 @@ export default function Register() {
     )
   }
 
+  const removeErrors = () => {
+    dispatch(
+      clearErrors()
+    )
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     const password = regConfirmPassword
@@ -38,7 +45,7 @@ export default function Register() {
         <style.Header>
           <h1><Link to='/'>Sign up for Mimic Pay</Link></h1>
         </style.Header>
-        {errMessage ? <div>{errMessage}</div> : null}
+        {id === 'REGISTER_FAIL' ? <div onMouseLeave={removeErrors}>{msg.msg}</div> : null}
         <style.Form onSubmit={handleSubmit}>
           <input type="text" name='userName' placeholder="Username" value={userName} onChange={handleChange} />
           <input type="email" name='email' placeholder="Email" value={email} onChange={handleChange} />
