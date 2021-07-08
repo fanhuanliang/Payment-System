@@ -1,4 +1,6 @@
 import * as type from "./actionTypes";
+import { handleErrors, clearErrors } from "./errorActions";
+
 const axios = require("axios");
 
 export const handleInputValue = (name, value) => {
@@ -14,28 +16,49 @@ export const handleInitState = () => {
   };
 };
 
+//check token & load user
+export const loadUser = () => (dispatch, getState)=> {
+  // user loading
+  dispatch({ type: type.USER_LOADING });
+  axios
+    .get("/api/auth/user", tokenConfig(getState))
+    .then(res => 
+      {console.log(res.data);
+      dispatch({ 
+      type: type.USER_LOADED, 
+      payload: res.data 
+    })})
+    .catch((err) => {
+      console.log(err)
+      dispatch(
+        handleErrors(err.response.data, err.response.status)
+        );
+      dispatch({ type: type.AUTH_ERROR });
+    });
+};
+
 export const loginSubmitHandler = (loginData) => (dispatch) => {
-  console.log('action', loginData)
+  console.log("action", loginData);
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(loginData),
   };
-  fetch("api/login", requestOptions)
+  fetch("http://localhost:4000/api/login", requestOptions)
     .then((response) => response.json())
     .then(
-      (data) => console.log('data',data.msg)
+      (data) => console.log("data", data.msg)
       // dispatch({
       //   type: type.REGISTER_SUBMIT_HANDLER,
       // })
     )
-    .catch((err) => console.log('loginErr', err,));
-}
+    .catch((err) => console.log("loginErr", err));
+};
 
 export const registerSubmitHandler = (registerData) => (dispatch) => {
   // thunk allows us return function by passing dispatch
   axios
-    .post("/api/register", registerData)
+    .post("http://localhost:4000/api/register", registerData)
     .then((response) => {
       console.log("response", response);
     })
@@ -49,16 +72,22 @@ export const registerSubmitHandler = (registerData) => (dispatch) => {
       });
     });
 };
-// const requestOptions = {
-//   method: "POST",
-//   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-//   body: JSON.stringify([registerData]),
-// };
-// fetch("api/register", requestOptions)
-//   .then((response) => response.json())
-//   .then((data) =>
-//   console.log(data),
-//     dispatch({
-//       type: type.REGISTER_SUBMIT_HANDLER,
-//     })
-//   );
+
+export const tokenConfig = (getState) => {
+  // Get token from localstorage
+  const token = getState().authReducer.token;
+  console.log("localStorage", getState().authReducer);
+  // Headers
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+
+  // If token, add to headers
+  if (token) {
+    config.headers["authorization"] = token;
+  }
+
+  return config;
+};

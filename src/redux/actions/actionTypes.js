@@ -1,9 +1,29 @@
-export const HANDLE_INPUT_VALUE= 'change_input_value'
+export const HANDLE_INPUT_VALUE= 'CHANGE_INPUT_VALUE'
 
-export const LOGIN_HANDLE_SUBMIT = 'submit_log_in'
+export const LOGIN_HANDLE_SUBMIT = 'SUBMIT_LOG_IN'
 
-export const CLEAN_UP_STATE = 'clean_up_state'
+export const CLEAN_UP_STATE = 'CLEAN_UP_STATE'
 
-export const REGISTER_SUBMIT_HANDLER = "register_submit_handler";
+export const REGISTER_SUBMIT_HANDLER = "REGISTER_SUBMIT_HANDLER";
 
-export const REGISTER_ERROR_HANDLER = 'register_error_handler'
+export const REGISTER_ERROR_HANDLER = 'REGISTER_ERROR_HANDLER'
+
+export const USER_LOADING = "USER_LOADING";
+
+export const USER_LOADED = "USER_LOADED";
+
+export const AUTH_ERROR = "AUTH_ERROR"; 
+
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS"; 
+
+export const LOGIN_FAIL = "LOGIN_FAIL";
+
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+
+export const REGISTER_FAIL = "REGISTER_FAIL";
+
+export const GET_ERRORS = "GET_ERRORS";
+
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
