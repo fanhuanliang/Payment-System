@@ -33,8 +33,10 @@
   },
   "scripts": {
     "devStart": "nodemon server/index.js",
-    "build": "webpack --watch",
-    "startAuth": "server/authServer.js"
+    "start": "node server/index.js",
+    "devBuild": "webpack --watch",
+    "build": "webpack",
+    "startAuth": "nodemon server/authServer.js"
   },
   "repository": {
     "type": "git",

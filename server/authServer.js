@@ -39,9 +39,7 @@ app.post("/api/login", async (req, res) => {
                 // console.log(user.balance);
                 res
                   .status(200)
-                  .json({
-                    msg: { token, user: { id: user.id, userName: user.userName, balance:user.balance} },
-                  });
+                  .json({ token, user: { id: user.id, userName: user.userName, balance:user.balance} });
               }
             }
           );

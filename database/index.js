@@ -59,19 +59,6 @@ async function transferMoney ({ payer, payee, amount }, callback) {
   console.log('transferMoney',payer, payee, amount);
   const filterPayer = { userName: payer };
   const filterPayee = { userName: payee };
-  // User.findOneAndUpdate(
-  //   filterPayer,
-  //   { $inc: { balance: -amount } },
-  //   { new: true },
-  //   function (err, response) {
-  //     if (err) {
-  //       callback(err);
-  //     } else {
-  //       console.log('transferMoney', response)
-  //       callback(response);
-  //     }
-  //   }
-  // );
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
@@ -86,7 +73,6 @@ async function transferMoney ({ payer, payee, amount }, callback) {
       const receiver = await User.findOne(filterPayee);
       // const receiver = await User.findOne(filterPayee).session(session);
       receiver.balance = receiver.balance + Number(amount);
-      console.log("session", receiver);
   
       await receiver.save();
       await session.commitTransaction();
@@ -99,13 +85,12 @@ async function transferMoney ({ payer, payee, amount }, callback) {
     await session.abortTransaction();
 
     // logging the error
-    // console.error('error', error);
+    console.error('error', error);
 
     // rethrow the error
     callback(error);
   } finally {
     // ending the session
-    console.log('endsession')
     session.endSession();
   }
 }; 
