@@ -8,7 +8,7 @@ import { clearErrors } from '../../redux/actions/errorActions'
 export default function Login() {
   const { user, loginPassword } = useSelector(state => state.formReducer)
   const { msg, id } = useSelector(state => state.errorReducer)
-  const { isAuthenticated } = useSelector(state => state.authReducer)
+  const { token, isAuthenticated } = useSelector(state => state.authReducer)
   const dispatch = useDispatch()
   let history = useHistory()
 
@@ -66,7 +66,7 @@ export default function Login() {
             {id === 'LOGIN_FAIL' ? <div onMouseLeave={removeErrors}>{msg.msg}</div> : <div style={{ visibility: 'hidden' }}>No err</div>}
             <input type="text" value={user} name='user' placeholder="Email or user name" onChange={handleChange} />
             <input type="password" value={loginPassword} name='loginPassword' placeholder="Password" onChange={handleChange}></input>
-            <style.Button>Log In</style.Button>
+            <style.Button >Log In</style.Button>
           </style.Form>
           <style.BottomContainer>
             <style.Middle>

@@ -22,6 +22,7 @@ export default function Register() {
   )
 
   const dispatch = useDispatch()
+  
   React.useEffect(() => {
     return dispatch(
       handleInitState()

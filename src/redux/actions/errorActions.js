@@ -1,7 +1,7 @@
 import { GET_ERRORS, CLEAR_ERRORS } from "./actionTypes";
 
 export const handleErrors = (msg, status, id) => {
-  // console.log('handleErr',  msg, status, id)
+  console.log('handleErr',  msg, status, id)
     return {
       type: GET_ERRORS,
       payload: { msg, status, id },

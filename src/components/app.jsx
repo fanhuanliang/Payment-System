@@ -5,12 +5,12 @@ import Register from './Register/Register.jsx';
 import Main from './Main/Main.jsx';
 import { GlobalStyle } from '../index.style.jsx';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loadUser } from '../redux/actions/actionCreators'
 
 const App = () => {
   // console.log(window.__REDUX_DEVTOOLS_EXTENSION__() )
-  const { user, isAuthenticated } = useSelector(state => state.authReducer)
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(loadUser())

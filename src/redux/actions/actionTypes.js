@@ -27,3 +27,11 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const GET_ERRORS = "GET_ERRORS";
 
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+
+export const SEARCH_USER = "SEARCH_USER";
+
+export const SEARCH_USER_FAIL = "SEARCH_USER_FAIL";
+
+export const CONFIRM_TRANSFER = "CONFIRM_TRANSFER";
+
+export const ADD_RECEIVER = "ADD_RECEIVER";

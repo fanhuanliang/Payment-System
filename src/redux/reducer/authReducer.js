@@ -1,11 +1,12 @@
 import * as type from "../actions/actionTypes";
 
 const initialState = {
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem("token"),
   isAuthenticated: false,
   isLoading: false,
-  user: null
-}
+  user: null,
+  balance: 0
+};
 
 export default (state=initialState, action) => {
   switch(action.type) {
@@ -19,23 +20,24 @@ export default (state=initialState, action) => {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user:action.payload.msg.userName
+        user: action.payload.userName,
+        balance: action.payload.balance,
       };
     case type.LOGIN_SUCCESS:
     case type.REGISTER_SUCCESS:
-      // console.log('action.payload',action.payload, action.payload.token);
       localStorage.setItem("token", action.payload.token); 
       return {
         ...state,
-        ...action.payload,
+        token: action.payload.token,
+        user: action.payload.user.userName,
+        balance: action.payload.user.balance,
         isAuthenticated: true,
-        isLoading: false
+        isLoading: false,
       };
     case type.AUTH_ERROR:
     case type.LOGIN_FAIL:
     case type.LOGOUT_SUCCESS:
     case type.REGISTER_FAIL:
-      // console.log('logout reducer')
       localStorage.removeItem('token')
       return {
         ...state,
@@ -43,6 +45,11 @@ export default (state=initialState, action) => {
         isAuthenticated: false,
         isLoading:false,
         user: null
+      };
+    case type.CONFIRM_TRANSFER:
+      return {
+        ...state,
+        balance: action.payload.balance,
       };
       default:
         return state;

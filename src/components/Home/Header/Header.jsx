@@ -23,7 +23,7 @@ export default function Header() {
             {token !== null ?
               <>
                 <style.NewLink to='/main' >Account</style.NewLink>
-                <style.NewLink to='/' onClick={handleLogout}>Log Out</style.NewLink>
+                <style.NewLink to='/login' onClick={handleLogout}>Log Out</style.NewLink>
               </>
               :
               <>
