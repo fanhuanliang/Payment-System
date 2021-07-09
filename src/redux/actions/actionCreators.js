@@ -1,5 +1,5 @@
 import * as type from "./actionTypes";
-import { handleErrors, clearErrors } from "./errorActions";
+import { handleErrors} from "./errorActions";
 
 const axios = require("axios");
 
@@ -23,25 +23,21 @@ export const loadUser = () => (dispatch, getState) => {
   axios
     .get("/api/auth/user", tokenConfig(getState))
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: type.USER_LOADED,
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err);
       dispatch(handleErrors(err.response.data, err.response.status));
       dispatch({ type: type.AUTH_ERROR });
     });
 };
 
 export const loginSubmitHandler = (loginData) => (dispatch) => {
-  console.log("action", loginData);
   axios
     .post("http://localhost:4000/api/login", loginData)
     .then((response) => {
-      console.log("response, login", response.data);
       dispatch({
         type: type.LOGIN_SUCCESS,
         payload: response.data,
@@ -49,8 +45,6 @@ export const loginSubmitHandler = (loginData) => (dispatch) => {
       dispatch({ type: type.CLEAN_UP_STATE });
     })
     .catch((error) => {
-      console.log("error, login", error);
-      console.log("loginErr", error.response.data , error.response.status);
       dispatch({
         type: type.LOGIN_FAIL,
       });
@@ -65,7 +59,6 @@ export const registerSubmitHandler = (registerData) => (dispatch) => {
   axios
     .post("http://localhost:4000/api/register", registerData)
     .then((response) => {
-      // console.log("response, actionRegister", response.data);
       dispatch({
         type: type.REGISTER_SUCCESS,
         payload: response.data,
@@ -73,7 +66,6 @@ export const registerSubmitHandler = (registerData) => (dispatch) => {
       dispatch({ type: type.CLEAN_UP_STATE });
     })
     .catch((error) => {
-      console.log("error, register", error);
       dispatch({
         type: type.REGISTER_FAIL,
       });
@@ -89,7 +81,6 @@ export const registerSubmitHandler = (registerData) => (dispatch) => {
 
 //handle logout user
 export const logout = () => {
-  console.log("action logout");
   return {
     type: type.LOGOUT_SUCCESS,
   };
@@ -99,7 +90,6 @@ export const logout = () => {
 export const tokenConfig = (getState) => {
   // Get token from localstorage
   const token = getState().authReducer.token;
-  console.log("localStorage", token);
   // Headers
   const config = {
     headers: {

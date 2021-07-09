@@ -11,7 +11,6 @@ import { loadUser } from '../redux/actions/actionCreators'
 const App = () => {
   // console.log(window.__REDUX_DEVTOOLS_EXTENSION__() )
   const { user, isAuthenticated } = useSelector(state => state.authReducer)
-  console.log(user)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(loadUser())
@@ -24,13 +23,13 @@ const App = () => {
           <Route exact path='/'>
             <Home /> 
           </Route>
-          <Route path='/login'>
+          <Route exact path='/login'>
             <Login />
           </Route>
-          <Route path='/register'>
+          <Route exact path='/register'>
             <Register />
           </Route>
-          <Route path='/main'>
+          <Route exact path='/main'>
             <Main />
           </Route>
         </Switch>

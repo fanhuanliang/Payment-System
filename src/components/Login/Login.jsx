@@ -1,6 +1,6 @@
 import React from 'react'
 import * as style from './Login.style.jsx'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { handleInputValue, handleInitState, loginSubmitHandler } from '../../redux/actions/actionCreators'
 import { clearErrors } from '../../redux/actions/errorActions'
@@ -8,7 +8,15 @@ import { clearErrors } from '../../redux/actions/errorActions'
 export default function Login() {
   const { user, loginPassword } = useSelector(state => state.formReducer)
   const { msg, id } = useSelector(state => state.errorReducer)
+  const { isAuthenticated } = useSelector(state => state.authReducer)
   const dispatch = useDispatch()
+  let history = useHistory()
+
+  // console.log('loginAuth', token, user, history)
+  const loginAuth = () =>{
+      // history.push("/main");
+    if (isAuthenticated) history.push("/main")
+  }
 
   const linkStyle = {
     backgroundColor: 'rgb(163, 205, 217)',
@@ -20,6 +28,10 @@ export default function Login() {
       handleInitState()
     )
   }, [])
+
+  React.useEffect(()=>
+    loginAuth(), [isAuthenticated]
+  )
 
   const handleChange = (event) => {
     dispatch(
@@ -51,7 +63,7 @@ export default function Login() {
         <style.container>
           <style.Form onSubmit={handleSubmit}>
             <div><h1><Link to='/'>Mimic Pay</Link></h1></div>
-            {id === 'LOGIN_FAIL' ? <div onMouseLeave={removeErrors}>{msg.msg}</div> : <div style={{visibility: 'hidden'}}>No err</div>}
+            {id === 'LOGIN_FAIL' ? <div onMouseLeave={removeErrors}>{msg.msg}</div> : <div style={{ visibility: 'hidden' }}>No err</div>}
             <input type="text" value={user} name='user' placeholder="Email or user name" onChange={handleChange} />
             <input type="password" value={loginPassword} name='loginPassword' placeholder="Password" onChange={handleChange}></input>
             <style.Button>Log In</style.Button>
@@ -60,9 +72,7 @@ export default function Login() {
             <style.Middle>
               <span>or</span>
             </style.Middle>
-            {/* <style.Button> */}
             <Link to='register'><style.Button style={linkStyle}>Sign Up</style.Button></Link>
-            {/* </style.Button> */}
           </style.BottomContainer>
         </style.container>
       </style.Wrapper>
