@@ -1,11 +1,12 @@
 import React from 'react'
+import withAuth from '../HOC/withAuth'
 import * as style from './Login.style.jsx'
 import { Link, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { handleInputValue, handleInitState, loginSubmitHandler } from '../../redux/actions/actionCreators'
 import { clearErrors } from '../../redux/actions/errorActions'
 
-export default function Login() {
+const Login = () => {
   const { user, loginPassword } = useSelector(state => state.formReducer)
   const { msg, id } = useSelector(state => state.errorReducer)
   const { token, isAuthenticated } = useSelector(state => state.authReducer)
@@ -79,3 +80,5 @@ export default function Login() {
     </style.TopLayer>
   )
 }
+
+export default withAuth(Login)
