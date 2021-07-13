@@ -53,17 +53,29 @@ export const Title = styled.span`
 `
 
 export const Input = styled.input`
-    width: 180%;
+    width: 320px;
     padding: 10px;
     border: 1px solid grey;
     margin: 20px;
     border-radius: 5px;
+    font-size: 1.2rem;
+    outline: none;
+    text-align: right;
+    &:after {
+      content: "$";
+    }
+    @media only screen and (max-width: 768px) {
+      width: 200px;
+    }
+    
     ::placeholder {
       color: grey;
       font-size: 1.4em;
       float: right;
       padding:2px;
+    };
 `
+
 
 export const ConfirmButton = styled.button`
 	box-shadow:inset 0px 1px 0px 0px #dcecfb;
@@ -79,7 +91,6 @@ export const ConfirmButton = styled.button`
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #528ecc;
 }
 :hover {
 	background:linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);

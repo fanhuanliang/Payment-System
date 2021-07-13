@@ -5,6 +5,7 @@ import Popup from './Popup/Popup.jsx'
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { handleInitState } from '../../redux/actions/actionCreators'
+import Footer from '../Home/Footer/Footer.jsx';
 
 export default function Main() {
   const { token, user, balance } = useSelector(state => state.authReducer)
@@ -33,6 +34,7 @@ export default function Main() {
         </style.Box>
       </style.Container>
       <Popup open={isOpen} onClose={() => setIsOpen(false)}/>
+      <Footer />
     </div>
   )
 }
