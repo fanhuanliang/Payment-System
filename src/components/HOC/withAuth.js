@@ -35,7 +35,7 @@ const withAuth = (OrgComponent) => {
     };
 
     React.useEffect(() => {
-      return dispatch(handleInitState());
+      return dispatch(clearErrors(),handleInitState());
     }, []);
 
     React.useEffect(() => historyAuth(), [isAuthenticated]);
@@ -65,7 +65,7 @@ const withAuth = (OrgComponent) => {
 
     return (
       <OrgComponent
-        formReducer={(user, loginPassword)}
+        formReducer={formReducer}
         errorReducer={errorReducer}
         handleChange={handleChange}
         handleLoginSubmit={handleLoginSubmit}
