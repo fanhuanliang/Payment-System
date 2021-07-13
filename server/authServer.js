@@ -55,34 +55,37 @@ app.post("/api/login", async (req, res) => {
 });
 
 app.post("/api/register", async (req, res) => {
-  // console.log('postReg',req.body)
-  const { userName, email, password } = req.body;
-  if (!userName || !email || !password) {
+  const { userName, email, password, regConfirmPassword } = req.body;
+  console.log(
+    "postReg",
+  );
+  if (!userName || !email || !password || !regConfirmPassword) {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const user = req.body;
-    user.password = hashedPassword;
-    const balance = { balance: 1000.0 }; // default balance 1000
-    // console.log('user', user)
-    db.registerUser({ ...user, ...balance }, (err, user) => {
-      if (err) {
-        res.status(404).json({ msg: err });
-      } else {
-        const { id, userName, balance } = user;
-        const token = jwt.sign({ userName }, process.env.ACCESS_TOKEN_SECRET);
-        res
-          .status(200)
-          .json({
+  if (password !== regConfirmPassword) {
+    return res.status(400).json({ msg: "Password does not match" });
+  }
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const user = req.body;
+      user.password = hashedPassword;
+      const balance = { balance: 1000.0 }; // default balance 1000
+      // console.log('user', user)
+      db.registerUser({ ...user, ...balance }, (err, user) => {
+        if (err) {
+          res.status(404).json({ msg: err });
+        } else {
+          const { id, userName, balance } = user;
+          const token = jwt.sign({ userName }, process.env.ACCESS_TOKEN_SECRET);
+          res.status(200).json({
             token,
             user: { id: id, userName: userName, balance: balance },
           });
-      }
-    });
-  } catch {
-    res.status(500);
-  }
+        }
+      });
+    } catch {
+      res.status(500);
+    }
 });
 
 app.listen(port, () => {
