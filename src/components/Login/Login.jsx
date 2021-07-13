@@ -1,65 +1,14 @@
 import React from 'react'
 import withAuth from '../HOC/withAuth'
 import * as style from './Login.style.jsx'
-import { Link, useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { handleInputValue, handleInitState, loginSubmitHandler } from '../../redux/actions/actionCreators'
-import { clearErrors } from '../../redux/actions/errorActions'
+import { Link, } from 'react-router-dom'
 
 const Login = (props) => {
-  // const { user, loginPassword } = useSelector(state => state.formReducer)
-  // const { msg, id } = useSelector(state => state.errorReducer)
-  const { isAuthenticated } = useSelector(state => state.authReducer)
-  const dispatch = useDispatch()
-  let history = useHistory()
 
-  // console.log('loginAuth', token, user, history)
-  const loginAuth = () =>{
-      // history.push("/main");
-    if (isAuthenticated) history.push("/main")
-  }
-
-  const linkStyle = {
-    backgroundColor: 'rgb(163, 205, 217)',
-    border: '0px'
-  };
-
-  React.useEffect(() => {
-    return dispatch(
-      handleInitState()
-    )
-  }, [])
-
-  React.useEffect(()=>
-    loginAuth(), [isAuthenticated]
-  )
-
-  const handleChange = (event) => {
-    dispatch(
-      handleInputValue(
-        event.target.name,
-        event.target.value
-      )
-    );
-  }
-
-  const removeErrors = () => {
-    dispatch(
-      clearErrors()
-    )
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const password = loginPassword
-    const account = user
-    dispatch(
-      loginSubmitHandler({ account, password })
-    )
-  }
   const { user, loginPassword } = props.formReducer
   const { msg, id } = props.errorReducer
-  console.log(props)
+  const { handleChange, handleSubmit, removeErrors, linkStyle} = props
+  // console.log(props)
   return (
     <style.TopLayer>
       <style.Wrapper>
