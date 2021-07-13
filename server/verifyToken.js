@@ -2,17 +2,14 @@ const jwt = require("jsonwebtoken");
 // Verify Token
 function verifyToken(req, res, next) {
   //Get auth header value
-  // console.log(req.headers);
   const token = req.headers["authorization"];
   //check if bearer is undefined, no token
     if (!token) {
-      console.log('wrong')  
       return res.status(401).json({ msg: "No token, authorization denied" });
     }
 
     try {
       const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-      console.log('verify', decoded)
       // Add user from payload
       req.user = decoded;
       next();

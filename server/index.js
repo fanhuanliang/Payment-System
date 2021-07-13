@@ -19,50 +19,6 @@ app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
-//authentication
-// app.post("/api/login", async (req, res) => {
-//   // console.log("login server", req.body);
-//   const { account, password } = req.body;
-//   if (!account || !password) {
-//     return res.status(400).json({ msg: "Please enter all fields" });
-//   }
-//   try {
-//     db.loginUser(req.body, async (err, user) => {
-//       if (err) {
-//         //check if user exist
-//         res.status(404).json({ msg: err });
-//       } else {
-//         //Validate password
-//         if (await bcrypt.compare(req.body.password, user.password)) {
-//           //jwt.sign(payload, secretOrPrivateKey, [options, callback])
-//           let { userName } = user;
-//           jwt.sign(
-//             { userName },
-//             process.env.ACCESS_TOKEN_SECRET,
-//             (err, token) => {
-//               if (err) {
-//                 res.sendStatus(403);
-//               } else {
-//                 // console.log("token match", { token, user });
-//                 res
-//                   .status(200)
-//                   .json({
-//                     msg: { token, user: { id: user.id, userName: user.userName, balance:user.balance} },
-//                   });
-//               }
-//             }
-//           );
-//         } else {
-//           // console.log("passwordWrong");
-//           res.status(400).json({ msg: "Invalid credentials" });
-//         }
-//       }
-//     });
-//   } catch {
-//     res.status(500).send();
-//   }
-// });
-
 //api endpoint for retrieve login user info
 app.get("/api/auth/user", verifyToken, (req, res) => {
   // console.log("user", req.user.userName);
@@ -70,10 +26,9 @@ app.get("/api/auth/user", verifyToken, (req, res) => {
     db.loginUser({account: req.user.userName}, async (err, user) => {
       if (err) {
         //check if user exist
-        // console.log(err);
         res.status(404).json({ msg: err });
       } else {
-        res.status(200).json({ msg: { userName: user.userName, balance: user.balance } });
+        res.status(200).json({userName: user.userName, balance: user.balance});
       }
     });
   } catch {
@@ -81,33 +36,8 @@ app.get("/api/auth/user", verifyToken, (req, res) => {
   }
 });
 
-// app.post("/api/register", async (req, res) => {
-//   // console.log('postReg',req.body)
-//   const { userName, email, password } = req.body;
-//   if (!userName || !email || !password) {
-//     return res.status(400).json({ msg: "Please enter all fields" });
-//   }
-//   try {
-//     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-//     const user = req.body;
-//     user.password = hashedPassword;
-//     const balance = { balance: 1000.00 }; // default balance 1000
-//     // console.log('user', user)
-//     db.registerUser({ ...user, ...balance }, (err, user) => {
-//       if (err) {
-//         res.status(404).json({ msg: err });
-//       } else {
-//         const { id, userName } = user;
-//         const token = jwt.sign({ userName }, process.env.ACCESS_TOKEN_SECRET);
-//         res.status(200).json({ token, user: { id: id, userName: userName } });
-//       }
-//     });
-//   } catch {
-//     res.status(500);
-//   }
-// });
+app.post("/api/findUser", verifyToken, (req, res) => {
 
-app.get("/api/findUser", verifyToken, (req, res) => {
   const { account } = req.body;
   console.log("server", account);
   if (!account) {
@@ -117,10 +47,9 @@ app.get("/api/findUser", verifyToken, (req, res) => {
     db.loginUser(req.body, async (err, user) => {
       if (err) {
         //check if user exist
-        // console.log(err)
         res.status(404).json({ msg: err });
       } else {
-        res.status(200).json({ msg: {userName: user.userName} });
+        res.status(200).json({ userName: user.userName });
       }
     });
   } catch {
@@ -130,23 +59,22 @@ app.get("/api/findUser", verifyToken, (req, res) => {
 
 app.put("/api/transfer", verifyToken, (req, res) => {
   console.log('transfer endpoint',req.body, req.user)
-  // res.status(200).send('transferServer');
-  db.transferMoney(
-    {
-      payer: req.user.userName,
-      payee: req.body.userName,
-      amount: req.body.amount,
-    },
-    (err, result) => {
-      if (err) {
-        console.log(err)
-        res.status(400).json({msg:err})
-      } else {
-        // console.log('transfer,success, server', result)
-        res.status(400).json({ msg: result });
+  if (!req.body.userName || !req.body.amount) return res.status(400).json({ msg: "Please enter receiver or amount" });
+    db.transferMoney(
+      {
+        payer: req.user.userName,
+        payee: req.body.userName,
+        amount: req.body.amount,
+      },
+      (err, result) => {
+        if (err) {
+          console.log('err', err);
+          res.status(400).json({ msg: err });
+        } else {
+          res.status(200).json({user: result.userName, balance: result.balance});
+        }
       }
-    }
-  );
+    );
 })
 
 // wildcard handles any requests that don't match the ones ABOVE
