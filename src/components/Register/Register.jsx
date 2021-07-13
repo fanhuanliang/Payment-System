@@ -45,9 +45,9 @@ export default function Register() {
   }
   const handleSubmit = (event) => {
     event.preventDefault();
-    const password = regConfirmPassword
+    const password = regPassword
     dispatch(
-      registerSubmitHandler({ userName, email, password })
+      registerSubmitHandler({ userName, email, password, regConfirmPassword })
     )
   }
 
