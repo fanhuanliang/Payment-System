@@ -7,13 +7,13 @@ const Login = (props) => {
 
   const { user, loginPassword } = props.formReducer
   const { msg, id } = props.errorReducer
-  const { handleChange, handleSubmit, removeErrors, linkStyle} = props
+  const { handleChange, handleLoginSubmit, removeErrors, linkStyle} = props
   // console.log(props)
   return (
     <style.TopLayer>
       <style.Wrapper>
         <style.container>
-          <style.Form onSubmit={handleSubmit}>
+          <style.Form onSubmit={handleLoginSubmit}>
             <div><h1><Link to='/'>Mimic Pay</Link></h1></div>
             {id === 'LOGIN_FAIL' ? <div onMouseLeave={removeErrors}>{msg.msg}</div> : <div style={{ visibility: 'hidden' }}>No err</div>}
             <input type="text" value={user} name='user' placeholder="Email or user name" onChange={handleChange} />
