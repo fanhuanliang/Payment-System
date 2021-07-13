@@ -56,7 +56,6 @@ const registerUser = (data, callback) => {
 };
 
 async function transferMoney ({ payer, payee, amount }, callback) {
-  console.log('transferMoney',payer, payee, amount);
   const filterPayer = { userName: payer };
   const filterPayee = { userName: payee };
   const session = await mongoose.startSession();
@@ -64,7 +63,7 @@ async function transferMoney ({ payer, payee, amount }, callback) {
   try {
     const sender = await User.findOne(filterPayer);
     // const sender = await User.findOne(filterPayer).session(session);
-    console.log("sender", sender, amount);
+    // console.log("sender", sender, amount);
     sender.balance = sender.balance - Number(amount);
     if (sender.balance < 0) {
       callback(`User - ${sender.userName} has insufficient funds`);
@@ -85,7 +84,7 @@ async function transferMoney ({ payer, payee, amount }, callback) {
     await session.abortTransaction();
 
     // logging the error
-    console.error('error', error);
+    // console.error('error', error);
 
     // rethrow the error
     callback(error);
