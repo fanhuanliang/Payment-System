@@ -5,7 +5,8 @@ const initialState = {
   isAuthenticated: false,
   isLoading: false,
   user: null,
-  balance: 0
+  balance: 0,
+  isTransferred: false
 };
 
 export default (state=initialState, action) => {
@@ -50,6 +51,12 @@ export default (state=initialState, action) => {
       return {
         ...state,
         balance: action.payload.balance,
+        isTransferred: true
+      };
+    case type.TRANSFER_FINISHED:
+      return {
+        ...state,
+        isTransferred: false,
       };
       default:
         return state;

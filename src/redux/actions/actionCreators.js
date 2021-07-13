@@ -101,19 +101,17 @@ axios
     });
   })
   .catch((error) => {
-    console.log("handleTransferERR", error);
-    // dispatch({
-    //   type: type.SEARCH_USER_FAIL,
-    // });
-    // dispatch(
-    //   handleErrors(
-    //     error.response.data,
-    //     error.response.status,
-    //     "SEARCH_USER_FAIL"
-    //   )
-    // );
+    dispatch(
+      handleErrors(error.response.data, error.response.status, "TRANSFER_FAIL")
+    );
   });
 }
+
+export const handleAfterTransfer = () => {
+  return {
+    type: type.TRANSFER_FINISHED,
+  };
+};
 
 //handle logout user
 export const logout = () => {
@@ -161,7 +159,6 @@ export const tokenConfig = (getState) => {
       "Content-type": "application/json",
     },
   };
-
   // If token, add to headers
   if (token) {
     config.headers["authorization"] = token;

@@ -2,11 +2,15 @@ import React from 'react'
 import Users from './Users/Users.jsx'
 import * as style from './Popup.style.jsx'
 import { useSelector, useDispatch } from 'react-redux';
-import { handleInputValue, handleTransfer } from '../../../redux/actions/actionCreators'
+import { handleInputValue, handleTransfer, handleAfterTransfer } from '../../../redux/actions/actionCreators'
+import { clearErrors } from '../../../redux/actions/errorActions'
 
 export default function Popup({ open, onClose }) {
   if (!open) return null
   const { receiver, transferAmount} = useSelector(state => state.formReducer)
+  const { msg, id} = useSelector(state => state.errorReducer)
+  const { isTransferred } =useSelector(state => state.authReducer)
+  
   const dispatch = useDispatch();
   const handleChange = (event) => {
     dispatch(
@@ -14,6 +18,22 @@ export default function Popup({ open, onClose }) {
         event.target.name,
         event.target.value
       )
+    )
+  }
+
+  React.useEffect(()=>{
+    if (isTransferred) {
+      dispatch(
+        handleAfterTransfer()
+      )
+      alert("Transfer success")
+      onClose()
+    }
+  }, [isTransferred])
+
+  const removeErrors = () => {
+    dispatch(
+      clearErrors()
     )
   }
   const transferFund = (event) => {
@@ -24,8 +44,6 @@ export default function Popup({ open, onClose }) {
         amount: transferAmount
       })
     )
-    alert('Transfer success')
-    onClose()
   }
 
   return (
@@ -36,6 +54,7 @@ export default function Popup({ open, onClose }) {
             <style.Button onClick={onClose}>X</style.Button>
           </div>
           <style.Form onSubmit={transferFund}>
+            {id === "TRANSFER_FAIL" ? <div onMouseLeave={removeErrors}>{msg.msg}</div> : <div style={{ visibility: 'hidden' }}>No err</div>}
             <style.Input name='transferAmount' placeholder='$0.00' value={transferAmount} onChange={handleChange}></style.Input>
             <span>Transfer to <span>{receiver}</span></span>
             <style.ConfirmButton>Confirm</style.ConfirmButton>
