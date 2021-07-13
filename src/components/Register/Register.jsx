@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { handleInputValue, handleInitState, registerSubmitHandler } from '../../redux/actions/actionCreators'
 import { clearErrors } from '../../redux/actions/errorActions'
 
-export default function Register() {
+const Register = () => {
   const { userName, email, regPassword, regConfirmPassword } = useSelector(state => state.formReducer)
   const { msg, id } = useSelector(state => state.errorReducer)
   const { isAuthenticated } = useSelector(state => state.authReducer)
@@ -50,7 +50,7 @@ export default function Register() {
       registerSubmitHandler({ userName, email, password, regConfirmPassword })
     )
   }
-
+  
   return (
     <style.Layer>
       <style.Container>
@@ -71,3 +71,6 @@ export default function Register() {
     </style.Layer>
   )
 }
+
+
+export default Register;

@@ -6,10 +6,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { handleInputValue, handleInitState, loginSubmitHandler } from '../../redux/actions/actionCreators'
 import { clearErrors } from '../../redux/actions/errorActions'
 
-const Login = () => {
-  const { user, loginPassword } = useSelector(state => state.formReducer)
-  const { msg, id } = useSelector(state => state.errorReducer)
-  const { token, isAuthenticated } = useSelector(state => state.authReducer)
+const Login = (props) => {
+  // const { user, loginPassword } = useSelector(state => state.formReducer)
+  // const { msg, id } = useSelector(state => state.errorReducer)
+  const { isAuthenticated } = useSelector(state => state.authReducer)
   const dispatch = useDispatch()
   let history = useHistory()
 
@@ -57,7 +57,9 @@ const Login = () => {
       loginSubmitHandler({ account, password })
     )
   }
-
+  const { user, loginPassword } = props.formReducer
+  const { msg, id } = props.errorReducer
+  console.log(props)
   return (
     <style.TopLayer>
       <style.Wrapper>
@@ -81,4 +83,5 @@ const Login = () => {
   )
 }
 
+// export default withAuth(Login)
 export default withAuth(Login)
