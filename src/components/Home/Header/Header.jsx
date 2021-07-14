@@ -5,12 +5,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../../redux/actions/actionCreators'
 
 export default function Header() {
-  const { token } = useSelector(state => state.authReducer)
+  const { isAuthenticated } = useSelector(state => state.authReducer)
 
   const dispatch = useDispatch()
   const handleLogout = () => {
     dispatch(logout())
   }
+  // React.useEffect(() => {
+  //   console.log('mounted')
+  //   return () => {
+  //     console.log('******************* UNMOUNTED');
+  //   };
+  // }, []);
 
   return (
     <style.Header>
@@ -20,7 +26,7 @@ export default function Header() {
             <Link to='/'>Mimic Pay Logo</Link>
           </div>
           <style.rightSide>
-            {token !== null ?
+            {isAuthenticated ?
               <>
                 <style.NewLink to='/main' >Account</style.NewLink>
                 <style.NewLink to='/login' onClick={handleLogout}>Log Out</style.NewLink>
