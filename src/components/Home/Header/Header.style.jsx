@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
 
-// console.log(styled)
 export const Header = styled.header`
     position: sticky;
     top: 0;
