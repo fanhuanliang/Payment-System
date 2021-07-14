@@ -27,7 +27,11 @@ const withAuth = (OrgComponent) => {
     const dispatch = useDispatch();
     
     React.useEffect(() => {
-      return dispatch(clearErrors(),handleInitState());
+      return dispatch(clearErrors());
+    }, []);
+
+    React.useEffect(() => {
+      return dispatch(handleInitState());
     }, []);
 
     let history = useHistory();
