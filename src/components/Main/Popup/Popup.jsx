@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { handleInputValue, handleTransfer, handleAfterTransfer } from '../../../redux/actions/actionCreators'
 import { clearErrors } from '../../../redux/actions/errorActions'
 
-export default function Popup({ open, onClose }) {
+const Popup = ({ open, onClose }) => {
   if (!open) return null
   const { receiver, transferAmount} = useSelector(state => state.formReducer)
   const { msg, id} = useSelector(state => state.errorReducer)
@@ -65,3 +65,5 @@ export default function Popup({ open, onClose }) {
     </>
   )
 }
+
+export default Popup

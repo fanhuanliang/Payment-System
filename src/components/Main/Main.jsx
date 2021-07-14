@@ -7,13 +7,12 @@ import { Redirect } from 'react-router-dom'
 import { handleInitState } from '../../redux/actions/actionCreators'
 import Footer from '../Home/Footer/Footer.jsx';
 
-export default function Main() {
-  const { token, user, balance } = useSelector(state => state.authReducer)
+ const Main = () => {
+   const { user, balance, isAuthenticated } = useSelector(state => state.authReducer)
   const dispatch = useDispatch();
 
-  if (token === null) return <Redirect to='/login'/>
+   if (!isAuthenticated) return <Redirect to='/login'/>
 
-  const logOut = true
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => {
     setIsOpen(true);
@@ -24,7 +23,7 @@ export default function Main() {
 
   return (
     <div>
-      <Header logOut={logOut}/>
+      <Header logOut={isAuthenticated}/>
       <style.Container>
         <style.Box>
           <style.Title>Welcome, <span>{user}</span></style.Title>
@@ -38,3 +37,5 @@ export default function Main() {
     </div>
   )
 }
+
+export default Main;
