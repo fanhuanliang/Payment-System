@@ -25,18 +25,17 @@ const withAuth = (OrgComponent) => {
     const { isAuthenticated } = authReducer;
 
     const dispatch = useDispatch();
+    
+    React.useEffect(() => {
+      return dispatch(clearErrors(),handleInitState());
+    }, []);
+
     let history = useHistory();
-    const linkStyle = {
-      backgroundColor: "rgb(163, 205, 217)",
-      border: "0px",
-    };
+    
     const historyAuth = () => {
       if (isAuthenticated) history.push("/main");
     };
 
-    React.useEffect(() => {
-      return dispatch(clearErrors(),handleInitState());
-    }, []);
 
     React.useEffect(() => historyAuth(), [isAuthenticated]);
 
@@ -70,7 +69,6 @@ const withAuth = (OrgComponent) => {
         handleChange={handleChange}
         handleLoginSubmit={handleLoginSubmit}
         removeErrors={removeErrors}
-        linkStyle={linkStyle}
         handleRegisterSubmit={handleRegisterSubmit}
       />
     );
