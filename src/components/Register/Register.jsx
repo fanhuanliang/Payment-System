@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom'
 import withAuth from '../HOC/withAuth'
 
 const Register = (props) => {
+
   const { userName, email, regPassword, regConfirmPassword } = props.formReducer
   const { msg, id } = props.errorReducer
   const { handleChange, removeErrors, handleRegisterSubmit } = props
+
   return (
     <style.Layer>
       <style.Container>
