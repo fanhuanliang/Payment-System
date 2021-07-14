@@ -1,14 +1,13 @@
-import { css } from 'styled-components';
+const font_size_base =  "1rem";
 
-//font
-export default {
+const variable = {
   //font
   font_family_monospace: `SFMono-Regular, Menlo, Monaco, Consolas,
   'Liberation Mono', 'Courier New'`,
   font_family_base: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
   'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
   'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`,
-  font_size_base: `0.8rem`,
+  font_size_base: font_size_base,
   font_weight_lighter: `lighter`,
   font_weight_light: `300`,
   font_weight_normal: `400`,
@@ -39,4 +38,20 @@ export default {
   green: `#52c41a`,
   teal: `#20c997`,
   cyan: `#17a2b8`,
+
+//line
+line_height_base: `1.5`,
+line_height_lg: `2`,
+line_height_sm: `1.25`,
+
+// heading
+h1_font_size: `${font_size_base} * 2.5`,
+h2_font_size: `${font_size_base} * 2`,
+h3_font_size: `${font_size_base} * 1.75`,
+h4_font_size: `${font_size_base} * 1.5`,
+h5_font_size: `${font_size_base} * 1.25`,
+h6_font_size: `${font_size_base}`,
 }
+
+
+export default variable;
