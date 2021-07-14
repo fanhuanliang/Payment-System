@@ -56,9 +56,6 @@ app.post("/api/login", async (req, res) => {
 
 app.post("/api/register", async (req, res) => {
   const { userName, email, password, regConfirmPassword } = req.body;
-  console.log(
-    "postReg",
-  );
   if (!userName || !email || !password || !regConfirmPassword) {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
