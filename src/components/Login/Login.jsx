@@ -7,8 +7,11 @@ const Login = (props) => {
 
   const { user, loginPassword } = props.formReducer
   const { msg, id } = props.errorReducer
-  const { handleChange, handleLoginSubmit, removeErrors, linkStyle} = props
-  // console.log(props)
+  const { handleChange, handleLoginSubmit, removeErrors } = props
+  const linkStyle = {
+    backgroundColor: "rgb(163, 205, 217)",
+    border: "0px",
+  };
   return (
     <style.TopLayer>
       <style.Wrapper>
