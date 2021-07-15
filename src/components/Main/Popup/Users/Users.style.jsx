@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import variable from '../../../../styles/variable.style.jsx';
+import { InitButton } from '../../../../styles/button.style.jsx';
 
 export const Title = styled.p`
     font-size: 1.4em;
@@ -14,6 +16,11 @@ export const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
+
+    &> button {
+      background-color:${variable.cyan};
+      width: 100%
+    }
 `
 
 export const Input = styled.input`
@@ -34,7 +41,7 @@ export const Input = styled.input`
       font-size: 1em;
       text-transform: uppercase;
       float: right;
-}
+    }
 `
 
 export const Form = styled.form`
@@ -42,32 +49,13 @@ export const Form = styled.form`
     flex-direction: column;
     width: 100%;
     align-items: center;
+    &> div {
+      font-size: 1.5rem;
+    }
 `
 
 
-export const SearchButton =styled.button`
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
-	background-color:#ededed;
-	border-radius:6px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	cursor:pointer;
-	color:#777777;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:3px 12px;
-	text-decoration:none;
-  margin: 10px 0px;
-}
-:hover {
-	background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
-	background-color:#dfdfdf;
-}
-:active {
-	position:relative;
-	top:1px;
-]  
+export const Button = styled(InitButton)`
+	background-color:${variable.gray_400};
 `
   

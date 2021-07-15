@@ -39,9 +39,9 @@ export default function Users() {
       <style.Form onSubmit={handleSubmit}>
         {id === 'SEARCH_USER_FAIL' ? <div onMouseLeave={removeErrors}>{msg.msg}</div> : <div style={{ visibility: 'hidden' }}>No err</div>}
         <style.Input placeholder='Username or email' name='searchInput' value={searchInput} onChange={handleChange}/>
-        <style.SearchButton>Search</style.SearchButton>
+        <style.Button>Search</style.Button>
       </style.Form>
-      {searchResult.length === 0 ? null : <button onClick={addRecipient}>{searchResult}</button>}
+      {searchResult.length === 0 ? null : <style.Button onClick={addRecipient}>{searchResult}</style.Button>}
     </style.Wrapper>
   )
 }
