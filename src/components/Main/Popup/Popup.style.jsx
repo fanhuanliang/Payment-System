@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import variable from '../../../styles/variable.style.jsx';
+import { InitButton } from '../../../styles/button.style.jsx';
 
 export const BottomLayer = styled.div`
   position: fixed;
@@ -6,7 +8,7 @@ export const BottomLayer = styled.div`
   left: 0;
   right: 0;
   bottom:0;
-  background-color: rgb(255, 255, 255);
+  background-color: ${variable.white};
   zIndex: 100;
 `
 
@@ -55,21 +57,18 @@ export const Title = styled.span`
 export const Input = styled.input`
     width: 320px;
     padding: 10px;
-    border: 1px solid grey;
+    border: 1px solid ${variable.gray_500};
     margin: 20px;
     border-radius: 5px;
     font-size: 1.2rem;
     outline: none;
     text-align: right;
-    &:after {
-      content: "$";
-    }
     @media only screen and (max-width: 768px) {
       width: 200px;
     }
     
     ::placeholder {
-      color: grey;
+      color: ${variable.gray_600};
       font-size: 1.4em;
       float: right;
       padding:2px;
@@ -77,26 +76,7 @@ export const Input = styled.input`
 `
 
 
-export const ConfirmButton = styled.button`
-	box-shadow:inset 0px 1px 0px 0px #dcecfb;
-	background:linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
-	background-color:#bddbfa;
-	border-radius:6px;
-	border:1px solid #84bbf3;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
-	text-decoration:none;
-}
-:hover {
-	background:linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);
-	background-color:#80b5ea;
-}
-:active {
-	position:relative;
-	top:1px;
+export const ConfirmButton = styled(InitButton)`
+	background-color: ${variable.dark_blue};
+  padding: 0px 47px;
 `
