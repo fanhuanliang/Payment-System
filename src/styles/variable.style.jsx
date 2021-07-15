@@ -35,7 +35,7 @@ const variable = {
   orange: '#fd7e14',
   yellow: '#fadb14',
   dark_yellow: '#ffb533',
-  green: '#52c41a',
+  green: '#b8e356',
   teal: '#20c997',
   cyan: '#17a2b8',
   dark_blue: 'rgb(0,108,182)',
@@ -56,9 +56,4 @@ h1_font_size: `${font_size_base * 2.5}rem`,
   h6_font_size: `${font_size_base }rem`,
 }
 
-const color = {
-  light_blue: 'rgb(163, 205, 217)',
-  dark_blue: 'rgb(0,108,182)',
-  border_gray: 'rgb(203, 207, 209)',
-}
 export default variable;
