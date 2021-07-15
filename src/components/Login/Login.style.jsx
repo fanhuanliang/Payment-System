@@ -61,6 +61,7 @@ const Middle = styled.div`
 `
 const Button = styled(InitButton)`
 	background-color:${variable.dark_blue};
+  width: 95%;
 `
 
 export {
