@@ -16,7 +16,7 @@ const variable = {
   font_weight_base: '400',
 
   // theme
-  white: '#fff',
+  white: '#ffffff',
   gray_100: '#f8f9fa',
   gray_200: '#e9ecef',
   gray_300: '#dee2e6',
@@ -36,7 +36,7 @@ const variable = {
   yellow: '#fadb14',
   dark_yellow: '#ffb533',
   green: '#b8e356',
-  teal: '#20c997',
+  teal: 'rgb(152,230,240)',
   cyan: '#17a2b8',
   dark_blue: 'rgb(0,108,182)',
   border_gray: 'rgb(203, 207, 209)',
