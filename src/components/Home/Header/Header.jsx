@@ -23,18 +23,18 @@ export default function Header() {
       <style.Wrapper>
         <style.Container>
           <div>
-            <Link to='/'>Mimic Pay Logo</Link>
+            <Link to='/'><style.H1>Mimic Pay Logo</style.H1></Link>
           </div>
           <style.rightSide>
             {isAuthenticated ?
               <>
-                <style.NewLink to='/main' >Account</style.NewLink>
-                <style.NewLink to='/login' onClick={handleLogout}>Log Out</style.NewLink>
+                <Link to='/main' ><style.Button>Account</style.Button></Link>
+                  <Link to='/login' onClick={handleLogout}><style.Button>Log Out</style.Button></Link>
               </>
               :
               <>
-                <style.NewLink to='/login'>Log In</style.NewLink>
-                <style.NewLink to='/register'>Sign Up</style.NewLink>
+                <Link to='/login'><style.Button>Log In</style.Button></Link>
+                <Link to='/register'><style.Button>Sign Up</style.Button></Link>
               </>
             }
           </style.rightSide>
