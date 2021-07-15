@@ -13,14 +13,13 @@ const Button = styled.button`
 	font-weight:bold;
 	padding:11px 23px;
 	text-decoration:none;
-  width: 95%;
   :active {
 	position:relative;
 	top:1px;
 }
 `;
 
-export const InitButton = ({ children, className }) => {
+export const InitButton = ({ children, className, onClick }) => {
   // console.log(className) child className
-  return <Button className={className}>{children}</Button>;
+  return <Button className={className} onClick={onClick}>{children}</Button>;
 };
