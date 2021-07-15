@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import variable from "../../../styles/variable.style.jsx"
+import { Heading } from "../../../styles/Heading.style.jsx"
 
 export const Wrapper = styled.div`
-  background-color: rgb(152,230,240);
+  background-color: ${variable.teal};
   min-height: 80vh;
   margin: 10px;
 `
@@ -14,7 +16,7 @@ export const Container = styled.div`
     margin: 20px;
     color: #557e94;
   }
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1000px) {
     justify-content: center;
     flex-direction: column;
     };
@@ -25,4 +27,10 @@ export const LeftSide = styled.div`
 `
 export const UnOrderList = styled.ul`
   list-style-type: none;
+`
+
+export const H1 = styled(Heading)`
+  font-size: 2.2rem;
+  padding: 15px;
+  margin: 15px;
 `
