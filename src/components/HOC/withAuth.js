@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   handleInputValue,
@@ -33,15 +33,8 @@ const withAuth = (OrgComponent) => {
     React.useEffect(() => {
       return dispatch(handleInitState());
     }, []);
-
-    let history = useHistory();
     
-    const historyAuth = () => {
-      if (isAuthenticated) history.push("/main");
-    };
-
-
-    React.useEffect(() => historyAuth(), [isAuthenticated]);
+    if (isAuthenticated) return <Redirect to="/main" />;
 
     const handleChange = (event) => {
       dispatch(handleInputValue(event.target.name, event.target.value));
