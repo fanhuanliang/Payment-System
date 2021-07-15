@@ -8,7 +8,7 @@ export default function Content() {
       <style.Wrapper>
         <style.Container>
           <style.LeftSide>
-          <h1>Online payments</h1>
+          <style.H1>Online payments</style.H1>
             <style.UnOrderList>
               <li>Mimic the transfer feature of venmo</li>
               <li>Money can be transferred to other user</li>
