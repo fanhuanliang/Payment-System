@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
+import { InitButton } from '../../../styles/button.style.jsx';
+import { Heading } from '../../../styles/Heading.style.jsx'
+import variable from '../../../styles/variable.style.jsx';
 
 export const Header = styled.header`
     position: sticky;
@@ -10,9 +13,9 @@ export const Header = styled.header`
 export const Wrapper = styled.div`
     display: flex;
     justify-content: center;
-    // margin-bottom: 20px;
-    background-color: rgb(224, 230, 239);
+    background-color: ${variable.blue};
 `
+export const H1 = styled(Heading)``
 
 export const Container = styled.div`
     width: 90%;
@@ -26,16 +29,13 @@ export const Container = styled.div`
 export const rightSide = styled.div`
     display: flex;
     justify-content: space-around;
-    width: 20%;
     font-size: 0.8em;
+    & > a {
+      margin-right: 10px;
+    }
     > * {
-      &:first-child {
-      background-color:#44c767;
-      border:1px solid #18ab29;
-      text-shadow:0px 1px 0px #2f6627;
-      :hover {
-	      background-color:#5cbf2a;
-}
+      &:first-child button {
+      background-color:${variable.dark_green};
     }
 
     @media only screen and (max-width: 770px) {
@@ -43,23 +43,12 @@ export const rightSide = styled.div`
     };
 `
 
-export const NewLink = styled(Link)`
-	background-color:#007dc1;
-	border-radius:28px;
-	border:1px solid #124d77;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-size:14px;
-	padding:8px 15px;
-	text-decoration:none;
-  min-width: 84px;
+export const Button = styled(InitButton)`
+  background-color:${variable.dark_blue};
+  min-width: 90px;
   max-height: 40px;
-}
-:hover {
-	background-color:#0061a7;
-}
-:active {
-	position:relative;
-	top:1px;
+  font-size:14px;
+  border-radius:28px;
+  padding:8px 15px;
+  text-align: center;
 `
