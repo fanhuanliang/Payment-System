@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import * as init from '../../index.style.jsx';
+import variable from '../../styles/variable.style.jsx';
+import { InitButton } from '../../styles/button.style.jsx';
+import { Heading } from '../../styles/Heading.style.jsx'
 
 const TopLayer = styled.div`
   min-height: 100vh;
@@ -7,10 +9,10 @@ const TopLayer = styled.div`
   justify-content: center;
 `
 const Wrapper = styled.div`
-  border: 1px solid ${init.color.border_gray};
+  border: 1px solid ${variable.border_gray};
   width: 700px;
   border-radius: 10px;
-  height: 800px;
+  padding: 20px;
   top: 10%;
   position: absolute;
     @media only screen and (max-width: 640px) {
@@ -26,14 +28,20 @@ const container = styled.div`
   `
   const Form = styled.form`
   display: flex;
-  &> div, input, button {
+  &> a, input, button {
     font-size: 20px;
     padding: 20px;
     margin: 20px;
   }
+  &> div {
+    font-size:1.5rem;
+  }
   flex-direction: column;
   }
 `
+const Header = styled(Heading)``
+
+
 const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,27 +49,18 @@ const BottomContainer = styled.div`
     font-size: 20px;
     padding: 20px;
     margin: 5px 20px;
+    // background-color:${variable.light_blue};
   }
-  &>button {
-    background-color:${init.color.light_blue};
+  &> a button{
+    background-color:${variable.light_blue};
     border:0px;
   }
 `
 const Middle = styled.div`
-  border-top: 1px solid ${init.color.border_gray};
+  border-top: 1px solid ${variable.border_gray};
 `
-const Button = styled.button`
-	background-color:${init.color.dark_blue};
-	border-radius:5px;
-	border:1px solid #4e6096;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	text-decoration:none;
-  width: 92%;
+const Button = styled(InitButton)`
+	background-color:${variable.dark_blue};
 `
 
 export {
@@ -72,4 +71,5 @@ export {
   Middle,
   TopLayer,
   Button,
+  Header
 }
