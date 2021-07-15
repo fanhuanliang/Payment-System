@@ -17,7 +17,7 @@ const Login = (props) => {
       <style.Wrapper>
         <style.container>
           <style.Form onSubmit={handleLoginSubmit}>
-            <div><h1><Link to='/'>Mimic Pay</Link></h1></div>
+            <Link to='/'><style.Header>Mimic Pay</style.Header></Link>
             {id === 'LOGIN_FAIL' ? <div onMouseLeave={removeErrors}>{msg.msg}</div> : <div style={{ visibility: 'hidden' }}>No err</div>}
             <input type="text" value={user} name='user' placeholder="Email or user name" onChange={handleChange} />
             <input type="password" value={loginPassword} name='loginPassword' placeholder="Password" onChange={handleChange}></input>
