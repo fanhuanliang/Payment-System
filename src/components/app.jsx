@@ -3,7 +3,7 @@ import Login from './Login/Login.jsx';
 import Home from './Home/Home.jsx';
 import Register from './Register/Register.jsx';
 import Main from './Main/Main.jsx';
-import { GlobalStyle } from '../index.style.jsx';
+import { GlobalStyle } from '../styles/index.style.jsx';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { loadUser } from '../redux/actions/actionCreators'
