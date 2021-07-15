@@ -15,6 +15,7 @@ import Footer from '../Home/Footer/Footer.jsx';
 
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => {
+    console.log('click')
     setIsOpen(true);
     dispatch(
       handleInitState()
@@ -26,8 +27,8 @@ import Footer from '../Home/Footer/Footer.jsx';
       <Header logOut={isAuthenticated}/>
       <style.Container>
         <style.Box>
-          <style.Title>Welcome, <span>{user}</span></style.Title>
-          <style.Heading>${balance.toFixed(2)}</style.Heading>
+          <style.H1>Welcome, <span>{user}</span></style.H1>
+          <style.Balance>${balance.toFixed(2)}</style.Balance>
           <style.Paragraph>Balance available</style.Paragraph>
           <style.Button onClick={openModal} >Transfer Money</style.Button>
         </style.Box>
