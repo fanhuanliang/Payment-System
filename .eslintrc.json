@@ -21,14 +21,29 @@
     ],
     "rules": {
         "prettier/prettier": "error",
-        "no-unused-vars": "warn",
+        "react/prop-types":[0],
+        "react/destructuring-assignment":[0],
+        "no-alert": "off",
         "no-console": "off",
-        "func-names": "off",
-        "no-process-exit": "off",
-        "object-shorthand": "off",
-        "class-methods-use-this": "off",
-        "import/extensions":{
-          "jxs": "always"
-        }
+        "no-underscore-dangle": "off",
+        "import/prefer-default-export": "off",
+        "no-lonely-if": "off",
+        "no-shadow": "off",
+        "consistent-return": "off",
+        "react/jsx-filename-extension": [
+          1,
+          {
+            "extensions": [
+              ".js",
+              ".jsx"
+            ]
+          }
+        ],
+        "import/extensions": "off"
+          // "no-unused-vars": "warn",
+          // "func-names": "off",
+          // "no-process-exit": "off",
+          // "object-shorthand": "off",
+          // "class-methods-use-this": "off",
     }
 }
