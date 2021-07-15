@@ -27,7 +27,7 @@ const variable = {
   gray_800: '#343a40',
   gray_900: '#212529',
   black: '#000',
-  blue: '#0d6efd',
+  blue: 'rgb(224, 230, 239)',
   indigo: '#6610f2',
   purple: '#6f42c1',
   pink: '#d63384',
@@ -41,14 +41,15 @@ const variable = {
   dark_blue: 'rgb(0,108,182)',
   border_gray: 'rgb(203, 207, 209)',
   light_blue: 'rgb(163, 205, 217)',
+  dark_green: '#44c767',
   
 //line
-line_height_base: '1.5',
-line_height_lg: '2',
-line_height_sm: '1.25',
+  line_height_base: '1.5',
+  line_height_lg: '2',
+  line_height_sm: '1.25',
 
 // heading
-h1_font_size: `${font_size_base * 2.5}rem`,
+  h1_font_size: `${font_size_base * 2.5}rem`,
   h2_font_size: `${font_size_base * 2}rem`,
   h3_font_size: `${font_size_base * 1.75}rem`,
   h4_font_size: `${font_size_base * 1.5}rem`,
