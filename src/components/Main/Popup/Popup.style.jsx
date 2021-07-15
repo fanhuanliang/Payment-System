@@ -47,6 +47,9 @@ export const Form = styled.form`
     line-height: 54px;
     font-size: 2em;
     padding: 20px;
+    &> div {
+      font-size: 1.5rem
+    }
 `
 
 export const Title = styled.span`
