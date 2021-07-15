@@ -1,9 +1,8 @@
-// import styled from "styled-components";
-import { createGlobalStyle } from 'styled-components'
-import { reset } from './reset.jsx'
+import { createGlobalStyle } from "styled-components";
+import { reset } from "./reset.jsx";
 
-// console.log(body)
 export const GlobalStyle = createGlobalStyle`
+${reset}
   // *,
   // *::before,
   // *::after {
@@ -15,6 +14,4 @@ export const GlobalStyle = createGlobalStyle`
   //   font-size: 62.25%;
   //   font-family: sans-serif;
   // }
-  ${reset}
-`
-
+`;

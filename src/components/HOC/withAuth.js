@@ -25,15 +25,11 @@ const withAuth = (OrgComponent) => {
     const { isAuthenticated } = authReducer;
 
     const dispatch = useDispatch();
-    
-    React.useEffect(() => {
-      return dispatch(clearErrors());
-    }, []);
 
-    React.useEffect(() => {
-      return dispatch(handleInitState());
-    }, []);
-    
+    React.useEffect(() => dispatch(clearErrors()), []);
+
+    React.useEffect(() => dispatch(handleInitState()), []);
+
     if (isAuthenticated) return <Redirect to="/main" />;
 
     const handleChange = (event) => {

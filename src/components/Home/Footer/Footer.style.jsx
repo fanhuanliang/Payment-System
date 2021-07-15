@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-    width: 80%;
-    margin: auto;
-`
+  width: 80%;
+  margin: auto;
+`;
 
 export const Container = styled.div`
-// margin: 10px;
-display: flex;
-justify-content: space-between;
-font-size: 1.7em;
-`
+  // margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.7em;
+`;
+
 export const UnOrderList = styled.ul`
     display: flex;
     list-style-type: none;
@@ -28,10 +29,11 @@ export const UnOrderList = styled.ul`
 	        background-color:#007dc1;
         }
       }
-`
+`;
+
 export const List = styled.li`
-padding-left: 10px;
-`
+  padding-left: 10px;
+`;
 
 export const Button = styled.button`
 width: 98px;
@@ -53,4 +55,4 @@ text-shadow:0px 1px 0px #1570cd;
 :active {
   position:relative;
 	top:1px;
-  `
+  `;

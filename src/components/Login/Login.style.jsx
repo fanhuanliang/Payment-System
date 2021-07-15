@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import variable from '../../styles/variable.style.jsx';
-import { InitButton } from '../../styles/button.style.jsx';
-import { Heading } from '../../styles/Heading.style.jsx'
+import variable from "../../styles/variable.style.jsx";
+import { InitButton } from "../../styles/button.style.jsx";
+import { Heading } from "../../styles/Heading.style.jsx";
 
 const TopLayer = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
-`
+`;
+
 const Wrapper = styled.div`
   border: 1px solid ${variable.border_gray};
   width: 700px;
@@ -15,18 +16,19 @@ const Wrapper = styled.div`
   padding: 20px;
   top: 10%;
   position: absolute;
-    @media only screen and (max-width: 640px) {
-      width: 500px;
-    };
-`
+  @media only screen and (max-width: 640px) {
+    width: 500px;
+  } ;
+`;
+
 const container = styled.div`
   padding: 40px;
   display: flex;
   flex-direction: column;
-  text-align: center
-  
-  `
-  const Form = styled.form`
+  text-align: center;
+`;
+
+const Form = styled.form`
   display: flex;
   &> a, input, button {
     font-size: 20px;
@@ -38,31 +40,34 @@ const container = styled.div`
   }
   flex-direction: column;
   }
-`
-const Header = styled(Heading)``
+`;
 
+const Header = styled(Heading)``;
 
 const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
-  &> div,button {
+  & > div,
+  button {
     font-size: 20px;
     padding: 20px;
     margin: 5px 20px;
     // background-color:${variable.light_blue};
   }
-  &> a button{
-    background-color:${variable.light_blue};
-    border:0px;
+  & > a button {
+    background-color: ${variable.light_blue};
+    border: 0px;
   }
-`
+`;
+
 const Middle = styled.div`
   border-top: 1px solid ${variable.border_gray};
-`
+`;
+
 const Button = styled(InitButton)`
-	background-color:${variable.dark_blue};
+  background-color: ${variable.dark_blue};
   width: 95%;
-`
+`;
 
 export {
   Wrapper,
@@ -72,5 +77,5 @@ export {
   Middle,
   TopLayer,
   Button,
-  Header
-}
+  Header,
+};

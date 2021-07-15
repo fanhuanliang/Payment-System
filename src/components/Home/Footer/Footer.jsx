@@ -1,5 +1,5 @@
-import React from 'react';
-import * as style from './Footer.style.jsx';
+import React from "react";
+import * as style from "./Footer.style.jsx";
 
 export default function Footer() {
   return (
@@ -8,12 +8,18 @@ export default function Footer() {
         <style.Container>
           <p>© 2021 Mimic Pay</p>
           <style.UnOrderList>
-            <style.List><style.Button>Instagram</style.Button></style.List>
-            <style.List><style.Button>Facebook</style.Button></style.List>
-            <style.List><style.Button>Twitter</style.Button></style.List>
+            <style.List>
+              <style.Button>Instagram</style.Button>
+            </style.List>
+            <style.List>
+              <style.Button>Facebook</style.Button>
+            </style.List>
+            <style.List>
+              <style.Button>Twitter</style.Button>
+            </style.List>
           </style.UnOrderList>
         </style.Container>
       </style.Wrapper>
     </footer>
-  )
+  );
 }

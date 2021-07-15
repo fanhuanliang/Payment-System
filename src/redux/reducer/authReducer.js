@@ -6,15 +6,15 @@ const initialState = {
   isLoading: false,
   user: null,
   balance: 0,
-  isTransferred: false
+  isTransferred: false,
 };
 
-export default (state=initialState, action) => {
-  switch(action.type) {
+export default (state = initialState, action) => {
+  switch (action.type) {
     case type.USER_LOADING:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case type.USER_LOADED:
       return {
@@ -26,7 +26,7 @@ export default (state=initialState, action) => {
       };
     case type.LOGIN_SUCCESS:
     case type.REGISTER_SUCCESS:
-      localStorage.setItem("token", action.payload.token); 
+      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         token: action.payload.token,
@@ -39,26 +39,26 @@ export default (state=initialState, action) => {
     case type.LOGIN_FAIL:
     case type.LOGOUT_SUCCESS:
     case type.REGISTER_FAIL:
-      localStorage.removeItem('token')
+      localStorage.removeItem("token");
       return {
         ...state,
         token: null,
         isAuthenticated: false,
-        isLoading:false,
-        user: null
+        isLoading: false,
+        user: null,
       };
     case type.CONFIRM_TRANSFER:
       return {
         ...state,
         balance: action.payload.balance,
-        isTransferred: true
+        isTransferred: true,
       };
     case type.TRANSFER_FINISHED:
       return {
         ...state,
         isTransferred: false,
       };
-      default:
-        return state;
+    default:
+      return state;
   }
-}
+};

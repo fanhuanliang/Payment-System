@@ -1,5 +1,5 @@
-import React from 'react';
-import styled, { keyframes }from 'styled-components';
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
 const rotate360 = keyframes`
   from {
@@ -26,10 +26,12 @@ const Spinner = styled.svg`
 const Loader = styled.div`
   position: fixed;
   top: 50%;
-  left:50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-`
+`;
 
-export const Loading = () => {
-  return <Loader><Spinner></Spinner></Loader>
-};
+export const Loading = () => (
+  <Loader>
+    <Spinner />
+  </Loader>
+);

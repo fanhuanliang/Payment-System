@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const H1 = styled.h1`
   font-family: 'Raleway',sans-serif; 
@@ -9,7 +9,7 @@ const H1 = styled.h1`
 }
 `;
 
-export const Heading = ({ children, className }) => {
+export const Heading = ({ children, className }) => (
   // console.log(className) child className
-  return <H1 className={className}>{children}</H1>;
-};
+  <H1 className={className}>{children}</H1>
+);

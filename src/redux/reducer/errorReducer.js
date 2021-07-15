@@ -1,12 +1,12 @@
-import {GET_ERRORS, CLEAR_ERRORS} from "../actions/actionTypes";
+import { GET_ERRORS, CLEAR_ERRORS } from "../actions/actionTypes";
 
 const initialState = {
-    msg: {},
-    status: null,
-    id:null
-}
+  msg: {},
+  status: null,
+  id: null,
+};
 
-export default (state=initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case GET_ERRORS:
       return {
@@ -18,9 +18,9 @@ export default (state=initialState, action) => {
       return {
         msg: {},
         status: null,
-        id: null
+        id: null,
       };
     default:
-      return state
+      return state;
   }
-}
+};
