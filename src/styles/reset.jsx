@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import variable from './variable.style.jsx';
 
-// console.log(variable)
+console.log(variable.h1_font_size)
 export const reset = css`
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -90,6 +90,29 @@ export const reset = css`
   }
   p, h1, h2, h3, h4, h5, h6, blockquote, pre, ul, ol, li, table, tr, th, td, input, textarea {
     user-select: text;
+  }
+  h1 {
+  font-size: ${variable.h1_font_size};
+  }
+
+  h2 {
+  font-size: ${variable.h2_font_size};
+  }
+
+  h3 {
+  font-size: ${variable.h3_font_size};
+  }
+
+  h4 {
+  font-size: ${variable.h4_font_size};
+  }
+
+  h5 {
+  font-size: ${variable.h5_font_size};
+  }
+
+  h6 {
+  font-size: ${variable.h6_font_size};
   }
 `
 
