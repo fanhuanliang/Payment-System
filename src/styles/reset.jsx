@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import variable from './variable.style.jsx';
 
-console.log(variable.h1_font_size)
+// console.log(variable)
 export const reset = css`
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
