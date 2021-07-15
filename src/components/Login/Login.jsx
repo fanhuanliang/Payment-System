@@ -8,10 +8,7 @@ const Login = (props) => {
   const { user, loginPassword } = props.formReducer
   const { msg, id } = props.errorReducer
   const { handleChange, handleLoginSubmit, removeErrors } = props
-  const linkStyle = {
-    backgroundColor: "rgb(163, 205, 217)",
-    border: "0px",
-  };
+
   return (
     <style.TopLayer>
       <style.Wrapper>
@@ -27,7 +24,7 @@ const Login = (props) => {
             <style.Middle>
               <span>or</span>
             </style.Middle>
-            <Link to='register'><style.Button style={linkStyle}>Sign Up</style.Button></Link>
+            <Link to='register'><style.Button >Sign Up</style.Button></Link>
           </style.BottomContainer>
         </style.container>
       </style.Wrapper>
