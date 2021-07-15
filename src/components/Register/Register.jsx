@@ -13,7 +13,7 @@ const Register = (props) => {
     <style.Layer>
       <style.Container>
         <style.Header>
-          <h1><Link to='/'>Sign up for Mimic Pay</Link></h1>
+          <Link to='/'><style.H1>Sign up</style.H1></Link>
         </style.Header>
         {id === 'REGISTER_FAIL' ? <div onMouseLeave={removeErrors}>{msg.msg}</div> : <div style={{ visibility: 'hidden' }}>No err</div>}
         <style.Form onSubmit={handleRegisterSubmit}>
@@ -22,7 +22,7 @@ const Register = (props) => {
           <input type="password" name='regPassword' placeholder="Password" value={regPassword} onChange={handleChange} />
           <input type="password" name='regConfirmPassword' placeholder="Confirm" value={regConfirmPassword} onChange={handleChange} />
           <style.Button >Register</style.Button>
-          <Link to='login'><style.LogInButton>Log In Instead</style.LogInButton></Link>
+          <Link to='login'><style.Button>Log In Instead</style.Button></Link>
         </style.Form>
       </style.Container>
     </style.Layer>
