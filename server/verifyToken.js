@@ -17,7 +17,10 @@ function verifyToken(req, res, next) {
     req.user = decoded;
     next();
   } catch (e) {
-    res.status(400).json({ msg: "Token is not valid" });
+    res
+      .status(400)
+      .clearCookie("access-token")
+      .json({ msg: "Token is not valid" });
   }
 }
 

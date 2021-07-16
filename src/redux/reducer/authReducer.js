@@ -1,7 +1,7 @@
 import * as type from "../actions/actionTypes";
 
 const initialState = {
-  token: localStorage.getItem("token"),
+  // token: localStorage.getItem("token"),
   isAuthenticated: false,
   isLoading: false,
   user: null,
@@ -26,10 +26,10 @@ export default (state = initialState, action) => {
       };
     case type.LOGIN_SUCCESS:
     case type.REGISTER_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
+      // localStorage.setItem("token", action.payload.token);
       return {
         ...state,
-        token: action.payload.token,
+        // token: action.payload.token,
         user: action.payload.user.userName,
         balance: action.payload.user.balance,
         isAuthenticated: true,
@@ -39,13 +39,14 @@ export default (state = initialState, action) => {
     case type.LOGIN_FAIL:
     case type.LOGOUT_SUCCESS:
     case type.REGISTER_FAIL:
-      localStorage.removeItem("token");
+      // localStorage.removeItem("token");
       return {
         ...state,
-        token: null,
+        // token: null,
         isAuthenticated: false,
         isLoading: false,
         user: null,
+        balance: 0,
       };
     case type.CONFIRM_TRANSFER:
       return {

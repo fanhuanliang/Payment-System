@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // api endpoint for retrieve login user info
 app.get("/api/auth/user", verifyToken, (req, res) => {
-  // console.log("user", req.user.userName);
+  console.log("user", req.user.userName);
   try {
     db.loginUser({ account: req.user.userName }, async (err, user) => {
       if (err) {
@@ -112,17 +112,27 @@ app.post("/api/login", async (req, res) => {
                 // The HTTP 403 Forbidden client error status response code indicates that the server understood the request but refuses to authorize it.
                 res.sendStatus(403);
               } else {
-                res.cookie("access-token", token, {
-                  httpOnly: true,
-                });
-                res.status(200).json({
-                  token,
-                  user: {
-                    id: user.id,
-                    userName: user.userName,
-                    balance: user.balance,
-                  },
-                });
+                res
+                  .status(200)
+                  .cookie("access-token", token, {
+                    httpOnly: true,
+                    sameSite: "strict",
+                  })
+                  .json({
+                    user: {
+                      id: user.id,
+                      userName: user.userName,
+                      balance: user.balance,
+                    },
+                  });
+                // res.status(200).json({
+                //   token,
+                //   user: {
+                //     id: user.id,
+                //     userName: user.userName,
+                //     balance: user.balance,
+                //   },
+                // });
               }
             }
           );
@@ -159,15 +169,29 @@ app.post("/api/register", async (req, res) => {
       } else {
         const { id, userName, balance } = resultUser;
         const token = jwt.sign({ userName }, process.env.ACCESS_TOKEN_SECRET);
-        res.status(200).json({
-          token,
-          user: { id, userName, balance },
-        });
+        // res.status(200).json({
+        //   token,
+        //   user: { id, userName, balance },
+        // });
+        res
+          .status(200)
+          .cookie("access-token", token, {
+            httpOnly: true,
+            sameSite: "strict",
+          })
+          .json({
+            user: { id, userName, balance },
+          });
       }
     });
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+// Delete cookies
+app.get("/api/deleteCookie", (req, res) => {
+  res.status(202).clearCookie("access-token").send("Cookies cleared");
 });
 
 // wildcard handles any requests that don't match the ones ABOVE

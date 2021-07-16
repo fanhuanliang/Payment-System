@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Header from "../Home/Header/Header.jsx";
 import * as style from "./Main.style.jsx";
 import Popup from "./Popup/Popup.jsx";
@@ -12,8 +12,12 @@ const Main = () => {
     (state) => state.authReducer
   );
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  if (!isAuthenticated) return <Redirect to="/login" />;
+  React.useEffect(() => {
+    if (!isAuthenticated) history.push("/login");
+  }, [isAuthenticated]);
+  // if (!isAuthenticated) return <Redirect to="/login" />;
 
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
