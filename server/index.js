@@ -13,6 +13,7 @@ const app = express();
 const port = process.env.port || 5000; // whatever is in the environment variable PORT, or 3000 if there's nothing there.
 const cors = require("cors");
 const db = require("../database/index.js");
+const { User } = require("../database/index.js");
 const verifyToken = require("./verifyToken");
 
 app.use(express.static(path.join(__dirname, "..", "public")));
@@ -87,63 +88,53 @@ app.put("/api/transfer", verifyToken, (req, res) => {
 });
 
 app.post("/api/login", async (req, res) => {
-  // console.log("login server", req.body);
   const { account, password } = req.body;
   if (!account || !password) {
     // 400 Bad Request response status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error
     return res.status(400).json({ msg: "Please enter all fields" });
   }
+
   try {
-    db.loginUser(req.body, async (err, user) => {
-      if (err) {
-        // Can't find the user
-        res.status(404).json({ msg: err });
-      } else {
-        // Validate password
-        if (await bcrypt.compare(req.body.password, user.password)) {
-          // jwt.sign(payload, secretOrPrivateKey, [options, callback])
-          const { userName } = user;
-          jwt.sign(
-            { userName },
-            process.env.ACCESS_TOKEN_SECRET,
-            // { expiresIn: "15s" },
-            (error, token) => {
-              if (error) {
-                // The HTTP 403 Forbidden client error status response code indicates that the server understood the request but refuses to authorize it.
-                res.sendStatus(403);
-              } else {
-                res
-                  .status(200)
-                  .cookie("access-token", token, {
-                    httpOnly: true,
-                    sameSite: "strict",
-                  })
-                  .json({
-                    user: {
-                      id: user.id,
-                      userName: user.userName,
-                      balance: user.balance,
-                    },
-                  });
-                // res.status(200).json({
-                //   token,
-                //   user: {
-                //     id: user.id,
-                //     userName: user.userName,
-                //     balance: user.balance,
-                //   },
-                // });
-              }
-            }
-          );
-        } else {
-          // console.log("passwordWrong");
-          res.status(400).json({ msg: "Invalid credentials" });
-        }
-      }
-    });
-  } catch (err) {
-    res.status(500).send(err);
+    const userInfo = {
+      $or: [{ userName: account }, { email: account }],
+    };
+    // Check if user exists
+    const findUser = await User.findOne(userInfo);
+    if (!findUser) throw "no user";
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      findUser.password
+    );
+    // Valid the password
+    if (!validPassword) throw "Invalid credentials";
+    const { userName } = findUser;
+    const accessToken = jwt.sign({ userName }, process.env.ACCESS_TOKEN_SECRET);
+    // Check if token sign successfully
+    if (!accessToken) throw "Could not sign the token";
+    res
+      .status(200)
+      .cookie("access-token", accessToken, {
+        httpOnly: true,
+        sameSite: "strict",
+      })
+      .json({
+        user: {
+          id: findUser.id,
+          userName: findUser.userName,
+          balance: findUser.balance,
+        },
+      });
+  } catch (error) {
+    // console.log(error);
+    if (error === "Invalid credentials") {
+      res.status(400).json({ msg: "Invalid credentials" });
+    } else if (error === "no user") {
+      res.status(409).json({ msg: "Can't find the user" });
+    } else if (error === "Could not sign the token") {
+      res.status(404).json("Something wrong on the server");
+    } else {
+      res.status(500).json(error);
+    }
   }
 });
 
@@ -157,39 +148,46 @@ app.post("/api/register", async (req, res) => {
     return res.status(401).json({ msg: "Password does not match" });
   }
   try {
+    const userInfo = {
+      $or: [{ userName: req.body.userName }, { email: req.body.email }],
+    };
+    // Check if user exists
+    const findUser = await User.findOne(userInfo);
+    if (findUser) throw "user exists";
+    // create hashed password
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = req.body;
     user.password = hashedPassword;
-    const initBalance = { balance: 1000.0 }; // default balance 1000
+    user.balance = 1000; // default balance 1000
+    const newUser = new User(user);
+    // Store the new User.
+    const saveUser = await newUser.save();
+    if (!saveUser) throw "Something went wrong saving the user";
 
-    db.registerUser({ ...user, ...initBalance }, (err, resultUser) => {
-      if (err) {
-        // check if user exist ref:https://stackoverflow.com/questions/9269040/which-http-response-code-for-this-email-is-already-registered/9270432
-        res.status(409).json({ msg: err });
-      } else {
-        const { id, userName, balance } = resultUser;
-        const token = jwt.sign({ userName }, process.env.ACCESS_TOKEN_SECRET);
-        // res.status(200).json({
-        //   token,
-        //   user: { id, userName, balance },
-        // });
-        res
-          .status(200)
-          .cookie("access-token", token, {
-            httpOnly: true,
-            sameSite: "strict",
-          })
-          .json({
-            user: { id, userName, balance },
-          });
-      }
-    });
-  } catch (err) {
-    res.status(500).json(err);
+    const accessToken = jwt.sign(
+      { userName: user.userName },
+      process.env.ACCESS_TOKEN_SECRET
+    );
+    if (!accessToken) throw "Could not sign the token";
+    res
+      .status(200)
+      .cookie("access-token", accessToken, {
+        httpOnly: true,
+        sameSite: "strict",
+      })
+      .json({
+        user: { id: user.id, userName: user.userName, balance: user.balance },
+      });
+  } catch (error) {
+    // console.log(error);
+    if (error === "user exists") {
+      res.status(409).json({ msg: "User exists already" });
+    } else {
+      res.status(400).json({ msg: "Something wrong on the server" });
+    }
   }
 });
 
-// Delete cookies
 app.get("/api/deleteCookie", (req, res) => {
   res.status(202).clearCookie("access-token").send("Cookies cleared");
 });
