@@ -149,7 +149,7 @@ export const searchRecipient = (recipient) => (dispatch) => {
   // dispatch({ type: type.USER_LOADING });
   axios
     // .post("/api/findUser", { account: recipient }, tokenConfig(getState))
-    .post("/api/findUser", { account: recipient })
+    .post("/api/findRecipient", { account: recipient })
     .then((response) => {
       dispatch({
         type: type.SEARCH_USER,
