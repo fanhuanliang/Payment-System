@@ -30,6 +30,7 @@
         "no-lonely-if": "off",
         "no-shadow": "off",
         "consistent-return": "off",
+        "no-throw-literal": "off",
         "react/jsx-filename-extension": [
           1,
           {
