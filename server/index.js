@@ -115,12 +115,25 @@ app.post("/api/login", async (req, res) => {
     // Valid the password
     if (!validPassword) throw "Invalid credentials";
     const { userName } = findUser;
-    const accessToken = jwt.sign({ userName }, process.env.ACCESS_TOKEN_SECRET);
+    const accessToken = jwt.sign(
+      { userName },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "10s" }
+    );
+    const refreshToken = jwt.sign(
+      { userName },
+      process.env.REFRESH_TOKEN_SECRET
+      // { expiresIn: "1d" }
+    );
     // Check if token sign successfully
     if (!accessToken) throw "Could not sign the token";
     res
       .status(200)
-      .cookie("access-token", accessToken, {
+      .cookie("accessToken", accessToken, {
+        httpOnly: true,
+        sameSite: "strict",
+      })
+      .cookie("refreshToken", refreshToken, {
         httpOnly: true,
         sameSite: "strict",
       })
@@ -173,12 +186,13 @@ app.post("/api/register", async (req, res) => {
 
     const accessToken = jwt.sign(
       { userName: user.userName },
-      process.env.ACCESS_TOKEN_SECRET
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "10s" }
     );
     if (!accessToken) throw "Could not sign the token";
     res
       .status(200)
-      .cookie("access-token", accessToken, {
+      .cookie("accessToken", accessToken, {
         httpOnly: true,
         sameSite: "strict",
       })
@@ -196,7 +210,11 @@ app.post("/api/register", async (req, res) => {
 });
 
 app.get("/api/deleteCookie", (req, res) => {
-  res.status(202).clearCookie("access-token").send("Cookies cleared");
+  res
+    .status(202)
+    .clearCookie("accessToken")
+    .clearCookie("refreshToken")
+    .send("Cookies cleared");
 });
 
 // wildcard handles any requests that don't match the ones ABOVE
