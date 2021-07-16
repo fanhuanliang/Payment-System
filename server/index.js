@@ -8,12 +8,10 @@ const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
 const app = express();
-// const bcrypt = require("bcrypt");
-// const jwt = require("jsonwebtoken");
+
 const port = process.env.port || 5000; // whatever is in the environment variable PORT, or 3000 if there's nothing there.
 const cors = require("cors");
-const db = require("../database/index.js");
-const { User } = require("../database/index.js");
+const { User, transferMoney } = require("../database/index.js");
 const verifyToken = require("./verifyToken");
 
 app.use(express.static(path.join(__dirname, "..", "public")));
@@ -27,64 +25,73 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // api endpoint for retrieve login user info
-app.get("/api/auth/user", verifyToken, (req, res) => {
-  console.log("user", req.user.userName);
+app.get("/api/auth/user", verifyToken, async (req, res) => {
   try {
-    db.loginUser({ account: req.user.userName }, async (err, user) => {
-      if (err) {
-        // check if user exist
-        res.status(404).json({ msg: err });
-      } else {
-        res
-          .status(200)
-          .json({ userName: user.userName, balance: user.balance });
-      }
-    });
-  } catch {
-    res.status(500);
+    const findUser = await User.findOne({ userName: req.user.userName });
+    if (!findUser) throw "no user";
+    // user exist
+    res
+      .status(200)
+      .json({ userName: findUser.userName, balance: findUser.balance });
+  } catch (error) {
+    if (error === "no user") {
+      res.status(409).json({ msg: "Can't find the user" });
+    } else {
+      res.status(500).json(error);
+    }
   }
 });
 
-app.post("/api/findUser", verifyToken, (req, res) => {
+app.post("/api/findRecipient", verifyToken, async (req, res) => {
   const { account } = req.body;
   if (!account) {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
   try {
-    db.loginUser(req.body, async (err, user) => {
-      if (err) {
-        // check if user exist
-        res.status(404).json({ msg: err });
-      } else {
-        res.status(200).json({ userName: user.userName });
-      }
-    });
-  } catch {
-    res.status(500);
+    const userInfo = {
+      $or: [{ userName: account }, { email: account }],
+    };
+    const findUser = await User.findOne(userInfo);
+    if (!findUser) throw "no user";
+    // user exist
+    res
+      .status(200)
+      .json({ userName: findUser.userName, balance: findUser.balance });
+  } catch (error) {
+    if (error === "no user") {
+      res.status(409).json({ msg: "Can't find the user" });
+    } else {
+      res.status(500).json(error);
+    }
   }
 });
 
-app.put("/api/transfer", verifyToken, (req, res) => {
+app.put("/api/transfer", verifyToken, async (req, res) => {
   // console.log('transfer endpoint',req.body, req.user)
   if (!req.body.userName || !req.body.amount)
     return res.status(400).json({ msg: "Please enter receiver or amount" });
-  db.transferMoney(
-    {
+  if (req.body.userName === req.user.userName)
+    return res.status(400).json({ msg: "Can not transfer to same account" });
+  try {
+    const transaction = await transferMoney({
       payer: req.user.userName,
       payee: req.body.userName,
       amount: req.body.amount,
-    },
-    (err, result) => {
-      if (err) {
-        console.log("err", err);
-        res.status(400).json({ msg: err });
-      } else {
-        res
-          .status(200)
-          .json({ user: result.userName, balance: result.balance });
-      }
+    });
+    if (transaction === `User has insufficient funds`)
+      throw "User has insufficient funds";
+    if (transaction === "error") throw "error";
+    res
+      .status(200)
+      .json({ user: transaction.userName, balance: transaction.balance });
+  } catch (error) {
+    console.log(error);
+    if (error === "User has insufficient funds") {
+      res.status(400).json({ msg: error });
+    } else {
+      res.status(400).json({ msg: "Transaction can't complete" });
     }
-  );
+  }
 });
 
 app.post("/api/login", async (req, res) => {

@@ -22,37 +22,7 @@ const userInfoSchema = new mongoose.Schema({
 
 const User = mongoose.model("UserInfo", userInfoSchema);
 
-const loginUser = (data, callback) => {
-  const userInfo = {
-    $or: [{ userName: data.account }, { email: data.account }],
-  };
-  // console.log(userInfo)
-  User.findOne(userInfo, (err, result) => {
-    if (err) {
-      callback(err);
-    } else {
-      if (!result) {
-        callback("Can't find the user");
-      } else {
-        callback(null, result);
-      }
-    }
-  });
-};
-
-const registerUser = (data, callback) => {
-  // console.log(data);
-  const user = new User(data);
-  user.save((err, result) => {
-    if (err) {
-      callback("User exists already");
-    } else {
-      callback(null, result);
-    }
-  });
-};
-
-async function transferMoney({ payer, payee, amount }, callback) {
+const transferMoney = async ({ payer, payee, amount }) => {
   const filterPayer = { userName: payer };
   const filterPayee = { userName: payee };
   const session = await mongoose.startSession();
@@ -63,20 +33,18 @@ async function transferMoney({ payer, payee, amount }, callback) {
     // console.log("sender", sender, amount);
     sender.balance -= Number(amount);
     if (sender.balance < 0) {
-      callback(`User - ${sender.userName} has insufficient funds`);
-    } else {
-      await sender.save();
-      const receiver = await User.findOne(filterPayee);
-      // const receiver = await User.findOne(filterPayee).session(session);
-      receiver.balance += Number(amount);
-
-      await receiver.save();
-      await session.commitTransaction();
-      callback(null, sender);
+      return `User has insufficient funds`;
     }
+    await sender.save();
+    const receiver = await User.findOne(filterPayee);
+    // const receiver = await User.findOne(filterPayee).session(session);
+    receiver.balance += Number(amount);
+    console.log(receiver);
+    await receiver.save();
+    await session.commitTransaction();
+    return sender;
   } catch (error) {
     // if anything fails above just rollback the changes here
-
     // this will rollback any changes made in the database
     await session.abortTransaction();
 
@@ -84,15 +52,14 @@ async function transferMoney({ payer, payee, amount }, callback) {
     // console.error('error', error);
 
     // rethrow the error
-    callback(error);
+    return "error";
   } finally {
     // ending the session
     session.endSession();
   }
-}
+};
 
 module.exports = {
-  loginUser,
-  registerUser,
+  User,
   transferMoney,
 };
