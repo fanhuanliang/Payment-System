@@ -11,7 +11,7 @@ const accessTokenGenerator = (user) => {
 
 const refreshTokenGenerator = (user) => {
   const refreshToken = jwt.sign(
-    { userName: user.userName },
+    { userName: user },
     process.env.REFRESH_TOKEN_SECRET,
     { expiresIn: "1d" }
   );
