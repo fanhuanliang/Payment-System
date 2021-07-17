@@ -8,7 +8,10 @@ const handleError = (res, error) => {
   if (error === "Could not sign the token") {
     return res.status(404).json("Something wrong on the server");
   }
-  return res.status(500).json(error);
+  if (error === "user exists") {
+    return res.status(409).json({ msg: "User exists already" });
+  }
+  return res.status(500).json({ msg: error });
 };
 
 module.exports = { handleError };
