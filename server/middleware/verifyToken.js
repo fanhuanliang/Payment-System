@@ -30,7 +30,6 @@ const verifyToken = (req, res, next) => {
   }
 
   // accessToken expired
-  // console.log('check refreshToken')
   if (expired && refreshToken) {
     const { payload } = isValidToken({ refreshToken });
     // console.log(payload)
