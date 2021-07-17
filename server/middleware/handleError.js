@@ -11,6 +11,13 @@ const handleError = (res, error) => {
   if (error === "user exists") {
     return res.status(409).json({ msg: "User exists already" });
   }
+  if (error === "User has insufficient funds") {
+    return res.status(400).json({ msg: error });
+  }
+  if (error === "error") {
+    return res.status(400).json({ msg: "Transaction can't complete" });
+  }
+
   return res.status(500).json({ msg: error });
 };
 
