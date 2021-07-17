@@ -39,7 +39,7 @@ const transferMoney = async ({ payer, payee, amount }) => {
     const receiver = await User.findOne(filterPayee);
     // const receiver = await User.findOne(filterPayee).session(session);
     receiver.balance += Number(amount);
-    console.log(receiver);
+
     await receiver.save();
     await session.commitTransaction();
     return sender;
