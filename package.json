@@ -47,8 +47,7 @@
     "devStart": "nodemon server/index.js",
     "start": "node server/index.js",
     "devBuild": "webpack --watch",
-    "build": "webpack",
-    "startAuth": "nodemon server/authServer.js"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
