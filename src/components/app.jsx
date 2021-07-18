@@ -6,7 +6,7 @@ import Home from "./Home/Home.jsx";
 import Register from "./Register/Register.jsx";
 import Main from "./Main/Main.jsx";
 import { GlobalStyle } from "../styles/index.style.jsx";
-import { loadUser } from "../redux/actions/actionCreators";
+import { loadUser } from "../redux/actions/authActions";
 import { Loading } from "../styles/Loading.style.jsx";
 
 const App = () => {

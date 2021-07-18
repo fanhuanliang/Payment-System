@@ -4,7 +4,7 @@ import withAuth from "../HOC/withAuth";
 import * as style from "./Login.style.jsx";
 
 const Login = (props) => {
-  const { user, loginPassword } = props.formReducer;
+  const { user, loginPassword } = props.userReducer;
   const { msg, id } = props.errorReducer;
   const { handleChange, handleLoginSubmit, removeErrors } = props;
 

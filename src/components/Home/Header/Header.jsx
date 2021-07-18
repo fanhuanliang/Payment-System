@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as style from "./Header.style.jsx";
-import { logout } from "../../../redux/actions/actionCreators";
+import { logout } from "../../../redux/actions/userActions";
 
 export default function Header() {
   const { isAuthenticated } = useSelector((state) => state.authReducer);

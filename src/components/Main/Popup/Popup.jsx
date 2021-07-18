@@ -6,13 +6,13 @@ import {
   handleInputValue,
   handleTransfer,
   handleAfterTransfer,
-} from "../../../redux/actions/actionCreators";
+} from "../../../redux/actions/userActions";
 import { clearErrors } from "../../../redux/actions/errorActions";
 
 const Popup = ({ open, onClose }) => {
   if (!open) return null;
   const { receiver, transferAmount } = useSelector(
-    (state) => state.formReducer
+    (state) => state.userReducer
   );
   const { msg, id } = useSelector((state) => state.errorReducer);
   const { isTransferred } = useSelector((state) => state.authReducer);

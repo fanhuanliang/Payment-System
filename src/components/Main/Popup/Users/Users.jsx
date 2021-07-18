@@ -5,12 +5,12 @@ import {
   handleInputValue,
   addToReceiver,
   searchRecipient,
-} from "../../../../redux/actions/actionCreators";
+} from "../../../../redux/actions/userActions";
 import { clearErrors } from "../../../../redux/actions/errorActions";
 
 export default function Users() {
   const { searchInput, searchResult } = useSelector(
-    (state) => state.formReducer
+    (state) => state.userReducer
   );
   const { msg, id } = useSelector((state) => state.errorReducer);
   const dispatch = useDispatch();

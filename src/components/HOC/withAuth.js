@@ -4,14 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   handleInputValue,
   handleInitState,
+} from "../../redux/actions/userActions";
+import {
   loginSubmitHandler,
   registerSubmitHandler,
-} from "../../redux/actions/actionCreators";
+} from "../../redux/actions/authActions";
 import { clearErrors } from "../../redux/actions/errorActions";
 
 const withAuth = (OrgComponent) => {
   const newComponent = () => {
-    const formReducer = useSelector((state) => state.formReducer);
+    const userReducer = useSelector((state) => state.userReducer);
     const errorReducer = useSelector((state) => state.errorReducer);
     const authReducer = useSelector((state) => state.authReducer);
     const {
@@ -21,7 +23,7 @@ const withAuth = (OrgComponent) => {
       email,
       regPassword,
       regConfirmPassword,
-    } = formReducer;
+    } = userReducer;
     const { isAuthenticated } = authReducer;
 
     const dispatch = useDispatch();
@@ -57,7 +59,7 @@ const withAuth = (OrgComponent) => {
 
     return (
       <OrgComponent
-        formReducer={formReducer}
+        userReducer={userReducer}
         errorReducer={errorReducer}
         handleChange={handleChange}
         handleLoginSubmit={handleLoginSubmit}

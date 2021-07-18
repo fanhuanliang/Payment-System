@@ -5,7 +5,7 @@ import withAuth from "../HOC/withAuth";
 
 const Register = (props) => {
   const { userName, email, regPassword, regConfirmPassword } =
-    props.formReducer;
+    props.userReducer;
   const { msg, id } = props.errorReducer;
   const { handleChange, removeErrors, handleRegisterSubmit } = props;
 

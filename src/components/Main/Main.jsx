@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import Header from "../Home/Header/Header.jsx";
 import * as style from "./Main.style.jsx";
 import Popup from "./Popup/Popup.jsx";
-import { handleInitState } from "../../redux/actions/actionCreators";
+import { handleInitState } from "../../redux/actions/userActions";
 import Footer from "../Home/Footer/Footer.jsx";
 
 const Main = () => {
