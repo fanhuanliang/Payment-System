@@ -1,6 +1,6 @@
-const { User } = require("../../database/index");
+const { User } = require("../database/index");
 const { handleError } = require("../middleware/handleError");
-const { transferMoney } = require("../../database/index");
+const { transferMoney } = require("../database/index");
 
 const loadedUser = async (req, res) => {
   // console.log('findUser');

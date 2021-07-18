@@ -11,7 +11,7 @@ const app = express();
 
 const port = process.env.port || 5000; // whatever is in the environment variable PORT, or 3000 if there's nothing there.
 const cors = require("cors");
-const { User, transferMoney } = require("../database/index.js");
+const { User, transferMoney } = require("./database/index.js");
 const { verifyToken } = require("./middleware/verifyToken");
 
 app.use(express.static(path.join(__dirname, "..", "public")));

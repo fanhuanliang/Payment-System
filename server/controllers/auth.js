@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const bcrypt = require("bcrypt");
-const { User } = require("../../database/index");
+const { User } = require("../database/index");
 const {
   accessTokenGenerator,
   refreshTokenGenerator,
