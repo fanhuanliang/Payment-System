@@ -13,6 +13,7 @@ import { clearErrors } from "../../redux/actions/errorActions";
 
 const withAuth = (OrgComponent) => {
   const newComponent = () => {
+    // useSelector is hook that takes the current state as an argument and returns whatever data you want from it.
     const userReducer = useSelector((state) => state.userReducer);
     const errorReducer = useSelector((state) => state.errorReducer);
     const authReducer = useSelector((state) => state.authReducer);
@@ -26,6 +27,7 @@ const withAuth = (OrgComponent) => {
     } = userReducer;
     const { isAuthenticated } = authReducer;
 
+    // useDispatch is hook that returns a reference to the dispatch function from the redux store.
     const dispatch = useDispatch();
 
     React.useEffect(() => dispatch(clearErrors()), []);
