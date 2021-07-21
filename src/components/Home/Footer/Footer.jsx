@@ -3,7 +3,7 @@ import * as style from "./Footer.style.jsx";
 
 export default function Footer() {
   return (
-    <footer>
+    <style.Footer>
       <style.Wrapper>
         <style.Container>
           <p>© 2021 Mimic Pay</p>
@@ -20,6 +20,6 @@ export default function Footer() {
           </style.UnOrderList>
         </style.Container>
       </style.Wrapper>
-    </footer>
+    </style.Footer>
   );
 }

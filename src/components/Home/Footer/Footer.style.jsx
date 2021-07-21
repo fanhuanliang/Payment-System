@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const Footer = styled.footer`
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  background: white;
+`;
+
 export const Wrapper = styled.div`
   width: 80%;
   margin: auto;
