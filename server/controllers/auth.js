@@ -52,6 +52,16 @@ const registerHandler = async (req, res) => {
   if (password !== regConfirmPassword) {
     return res.status(401).json({ msg: "Password does not match" });
   }
+
+  // console.log(password);
+  // password validation
+  const requirement = "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$";
+  if (!password.match(requirement)) {
+    return res.status(401).json({
+      msg: "Password must between 7 to 15 characters which contain at least one numeric digit and a special character",
+    });
+  }
+
   try {
     const userInfo = {
       $or: [{ userName: req.body.userName }, { email: req.body.email }],
