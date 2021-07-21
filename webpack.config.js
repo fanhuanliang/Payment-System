@@ -1,7 +1,7 @@
 const path = require('path');
 const SRC_DIR = path.join(__dirname, './src');
 const DIST_DIR = path.join(__dirname, "./public");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
@@ -28,9 +28,9 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "src", "index.html"),
-    }),
-  ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     template: path.resolve(__dirname, "src", "index.html"),
+  //   }),
+  // ],
 };
