@@ -5,7 +5,7 @@ import { Heading } from "../../../styles/Heading.style.jsx";
 export const Wrapper = styled.div`
   background-color: ${variable.teal};
   min-height: 80vh;
-  margin: 10px;
+  // margin: 10px;
 `;
 
 export const Container = styled.div`
