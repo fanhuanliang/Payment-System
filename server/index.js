@@ -4,7 +4,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 
-const port = process.env.port || 3000;
+const port = process.env.port || 5000;
 const app = express();
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(cors());
