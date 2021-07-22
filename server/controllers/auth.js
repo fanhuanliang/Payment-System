@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const bcrypt = require("bcrypt");
 const { User } = require("../database/index");
 const {

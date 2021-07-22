@@ -1,11 +1,12 @@
 const jwt = require("jsonwebtoken");
+const { jwtAccessToken, jwtRefreshToken } = require("../config/_env");
 
 const isValidToken = (token) => {
   try {
     const decoded =
       Object.keys(token)[0] === "accessToken"
-        ? jwt.verify(token.accessToken, process.env.ACCESS_TOKEN_SECRET)
-        : jwt.verify(token.refreshToken, process.env.REFRESH_TOKEN_SECRET);
+        ? jwt.verify(token.accessToken, jwtAccessToken)
+        : jwt.verify(token.refreshToken, jwtRefreshToken);
     // Add user from payload
     return { payload: decoded, expired: false };
   } catch (error) {
@@ -38,7 +39,7 @@ const verifyToken = (req, res, next) => {
       // const newAccessToken = signJWT({userName: req.user}, '5s');
       const newAccessToken = jwt.sign(
         { userName: payload.userName },
-        process.env.ACCESS_TOKEN_SECRET,
+        jwtAccessToken,
         { expiresIn: "10s" }
       );
       res.status(200).cookie("accessToken", newAccessToken, {

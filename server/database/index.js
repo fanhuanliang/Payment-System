@@ -1,16 +1,32 @@
 const mongoose = require("mongoose");
+const { mongoURI } = require("../config/_env");
 
-mongoose.connect("mongodb://localhost:27017/paymentTest", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+// mongoose.connect(mongoURI || "mongodb://localhost/paymentTest", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useCreateIndex: true,
+// });
+const connectDB = async () => {
+  // console.log(mongoURI);
+  try {
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    });
+    console.log("MongoDb connected...");
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+};
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-  console.log("mongoose connected successfully");
-});
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", () => {
+//   console.log("mongoose connected successfully");
+// });
 
 const userInfoSchema = new mongoose.Schema({
   userName: { type: String, unique: true, required: true, min: 6, max: 255 },
@@ -62,4 +78,5 @@ const transferMoney = async ({ payer, payee, amount }) => {
 module.exports = {
   User,
   transferMoney,
+  connectDB,
 };
